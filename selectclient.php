@@ -1,9 +1,10 @@
 <html>
   <body>
+  <h3>Clients</h3>
     <?php
       $host = "db.tecnico.ulisboa.pt";
       $user = "ist187136";
-      $pass = "xxx";
+      $pass = "rbtc1601";
       $dsn = "mysql:host=$host;dbname=$user";
       try
       {
@@ -20,7 +21,7 @@
       $VAT = $_REQUEST['VAT'];
       $name = $_REQUEST['name'];
       $address = $_REQUEST['address'];
-      $sql = "SELECT * FROM client WHERE VAT = $VAT "; # (VAT = $VAT) or (_name like '$name%') or (city like '%$address%') or (zip like '%$address%') or (street like '%$address%'
+      $sql = "SELECT * FROM client WHERE (_name like '%$name%') "; # (VAT = $VAT) or (_name like '%$name%') or (city like '%$address%') or (zip like '%$address%') or (street like '%$address%'
       echo("<p>$sql</p>");
       $result = $connection->query($sql);
       if ($result == FALSE)
@@ -37,19 +38,34 @@
       }
       else
       {
-        echo("<table border=\"1\">");
-        echo("<tr><td>Client VAT</td><td>Client name</td></tr>");
+        echo("<table border=\"1\" cellspacing=\"2\">\n");
+        echo("<tr><td>Client VAT</td><td>Client name</td><td>Birth date</td></tr>");
         foreach($result as $row)
         {
           echo("<tr><td>");
           echo($row['VAT']);
           echo("</td><td>");
           echo($row['_name']);
-          /*echo("</td><td>");
-          echo($row['balance']);*/
+          echo("</td><td>");
+          echo($row['birth_date']);
+          /*echo($row['street']);
+          echo("</td><td>");
+          echo($row['city']);
+          echo("</td><td>");
+          echo($row['zip']);
+          echo("</td><td>");
+          echo($row['gender']);
+          echo("</td><td>");
+          echo($row['age']);*/
+          echo("<td><a href=\"newappointmen.php?account_number="); # alterar account_number!
+          echo($row['account_number']); # alterar account_number!
+          echo("\">New appointment</a></td>\n");
           echo("</td></tr>");
         }
         echo("</table>");
+        echo("<td><a href=\"newclient.php?account_number="); # alterar account_number!
+        echo($row['account_number']); # alterar account_number!
+        echo("\">New client</a></td>\n");
       }
       $connection = null;
     ?>
