@@ -3,7 +3,7 @@
     <?php
       $host = "db.tecnico.ulisboa.pt";
       $user = "ist187136";
-      $pass = "rbtc1601";
+      $pass = "xxx";
       $dsn = "mysql:host=$host;dbname=$user";
       try
       {
@@ -16,6 +16,7 @@
         echo("</p>");
         exit();
       }
+
       $VAT = $_REQUEST['VAT'];
       $name = $_REQUEST['name'];
       $address = $_REQUEST['address'];
