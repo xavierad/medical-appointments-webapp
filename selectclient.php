@@ -3,7 +3,7 @@
     <?php
       $host = "db.tecnico.ulisboa.pt";
       $user = "ist187136";
-      $pass = "xxx";
+      $pass = "rbtc1601";
       $dsn = "mysql:host=$host;dbname=$user";
       try
       {
@@ -17,22 +17,38 @@
         exit();
       }
       $VAT = $_REQUEST['VAT'];
-      $VAT = $_REQUEST['name'];
-      $VAT = $_REQUEST['address'];
-      $sql = "SELECT _name FROM client WHERE VAT='$VAT' or _name='%$name'
-        or street='%$address' or zip='%$address' or city='%$address'";
+      $name = $_REQUEST['name'];
+      $address = $_REQUEST['address'];
+      $sql = "SELECT * FROM client WHERE VAT = $VAT "; # (VAT = $VAT) or (_name like '$name%') or (city like '%$address%') or (zip like '%$address%') or (street like '%$address%'
       echo("<p>$sql</p>");
       $result = $connection->query($sql);
+      if ($result == FALSE)
+      {
+        $info = $connection->errorInfo();
+        echo("<p>Error: {$info[2]}</p>");
+        exit();
+      }
       $nrows = $result->rowCount();
+      echo($nrows);
       if ($nrows == 0)
       {
         echo("<p>There is no client with such VAT number, name or address.</p>");
       }
       else
       {
-        $row = $result->fetch();
-        $_name = $row['_name'];
-        echo("<p>The name of $account_number is: $_name</p>");
+        echo("<table border=\"1\">");
+        echo("<tr><td>Client VAT</td><td>Client name</td></tr>");
+        foreach($result as $row)
+        {
+          echo("<tr><td>");
+          echo($row['VAT']);
+          echo("</td><td>");
+          echo($row['_name']);
+          /*echo("</td><td>");
+          echo($row['balance']);*/
+          echo("</td></tr>");
+        }
+        echo("</table>");
       }
       $connection = null;
     ?>
