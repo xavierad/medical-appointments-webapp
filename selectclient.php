@@ -4,7 +4,7 @@
     <?php
       $host = "db.tecnico.ulisboa.pt";
       $user = "ist187136";
-      $pass = "rbtc1601";
+      $pass = "xx";
       $dsn = "mysql:host=$host;dbname=$user";
       try
       {
@@ -31,7 +31,7 @@
         exit();
       }
       $nrows = $result->rowCount();
-      echo($nrows);
+      echo("<p>$nrows client(s) matched</p>");
       if ($nrows == 0)
       {
         echo("<p>There is no client with such VAT number, name or address.</p>");
@@ -57,15 +57,15 @@
           echo($row['gender']);
           echo("</td><td>");
           echo($row['age']);*/
-          echo("<td><a href=\"newappointmen.php?account_number="); # alterar account_number!
-          echo($row['account_number']); # alterar account_number!
+          echo("<td><a href=\"newappointment.php?client="); # alterar account_number!
+          echo($row['_name']. ", " .$row['VAT']);
           echo("\">New appointment</a></td>\n");
           echo("</td></tr>");
         }
         echo("</table>");
-        echo("<td><a href=\"newclient.php?account_number="); # alterar account_number!
-        echo($row['account_number']); # alterar account_number!
-        echo("\">New client</a></td>\n");
+        echo("<td><a href=\"newclient.php?"); # alterar account_number!
+        # echo($row['account_number']); # alterar account_number!
+        echo("\"><p>New client</p></a></td>\n");
       }
       $connection = null;
     ?>

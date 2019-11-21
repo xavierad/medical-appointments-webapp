@@ -1,6 +1,6 @@
 <html>
   <body>
-  <?php
+    <?php
     $host = "db.tecnico.ulisboa.pt";
     $user = "ist187136";
     $pass = "xx";
@@ -16,20 +16,14 @@
       echo("</p>");
       exit();
     }
-    $VAT = $_REQUEST['VAT'];
-    $name = $_REQUEST['name'];
-    $birth_date = $_REQUEST['birth_date'];
-    $street = $_REQUEST['street'];
-    $city = $_REQUEST['city'];
-    $zip = $_REQUEST['zip'];
-    $gender = $_REQUEST['gender'];
-    $age = $_REQUEST['age'];
-
-    $sql = "INSERT INTO client VALUES ('$VAT', '$name', '$birth_date', '$street', '$city', '$zip', '$gender', $age)";
+    $account_number = $_REQUEST['account_number'];
+    $branch_name = $_REQUEST['branch_name'];
+    $balance = $_REQUEST['balance'];
+    $sql = "INSERT INTO account VALUES ('$account_number', '$branch_name', $balance)";
     echo("<p>$sql</p>");
     $nrows = $connection->exec($sql);
     echo("<p>Rows inserted: $nrows</p>");
     $connection = null;
-  ?>
+    ?>
   </body>
 </html>
