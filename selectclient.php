@@ -3,8 +3,8 @@
   <h3>Clients</h3>
     <?php
       $host = "db.tecnico.ulisboa.pt";
-      $user = "ist187136";
-      $pass = "xx";
+      $user = "ist187094";
+      $pass = "stlk1710";
       $dsn = "mysql:host=$host;dbname=$user";
       try
       {
@@ -60,6 +60,9 @@
           echo("<td><a href=\"newappointment.php?client="); # alterar account_number!
           echo($row['_name']. ", " .$row['VAT']);
           echo("\">New appointment</a></td>\n");
+          echo("<td><a href=\"consultations_appointments.php?client="); # alterar account_number!
+          echo($row['_name']. ", " .$row['VAT']);
+          echo("\">Consultations/Appointments</a></td>\n");
           echo("</td></tr>");
         }
         echo("</table>");
