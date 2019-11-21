@@ -16,7 +16,10 @@
       echo("</p>");
       exit();
     }
-    $sql = "SELECT * FROM appointment ORDER BY date_timestamp";
+
+    $VAT = $_REQUEST['VAT'];
+
+    $sql = "SELECT * FROM appointment WHERE VAT_client = '$VAT' ORDER BY date_timestamp";
     $result = $connection->query($sql);
     if ($result == FALSE)
     {
