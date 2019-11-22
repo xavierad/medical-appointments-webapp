@@ -2,14 +2,14 @@
   <body>
     <form action="insertappointment.php" method="post">
     <h3>Insert a new appointment</h3>
-    <p>Client: <?=$_REQUEST['client']?></p>
-    <p>Date: <?=$datetimestamp = date('Y-m-d H:i:s', strtotime($_REQUEST['datetime']));?></p>
+    <p>Client: <?=$_REQUEST['client']?> <input type="hidden" name="client" value="<?=$_REQUEST['client']?>"></p>
+    <p>Date: <?=$datetimestamp = $_REQUEST['date'].' '.$_REQUEST['time']?><input type="hidden" name="datetimestamp" value="<?=$datetimestamp?>"></p>
     <p>Doctor:
-    <select name="name">
+    <select name="name" name="VAT_doctor">
       <?php
         $host = "db.ist.utl.pt";
         $user = "ist187136";
-        $pass = "xxx";
+        $pass = "rbtc1601";
         $dsn = "mysql:host=$host;dbname=$user";
         try
         {
@@ -37,12 +37,14 @@
         foreach($result as $row)
         {
           $name = $row['_name'];
+          $VAT_doctor = $row['VAT'];
           echo("<option value=\"$name\">$name</option>");
         }
 
         $connection = null;
       ?>
     </select>
+    <p>Description: <input type=text name="_description"/></p>
     </p>
     <p><input type="submit" value="Submit"/></p>
     </form>

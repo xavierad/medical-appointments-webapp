@@ -3,7 +3,7 @@
   <?php
     $host = "db.tecnico.ulisboa.pt";
     $user = "ist187136";
-    $pass = "xx";
+    $pass = "rbtc1601";
     $dsn = "mysql:host=$host;dbname=$user";
     try
     {

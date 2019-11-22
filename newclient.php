@@ -29,7 +29,6 @@
 
     $connection = null;
   ?>
-  </select>
   </p>
   <p><input type="submit" value="Submit"/></p>
   </form>

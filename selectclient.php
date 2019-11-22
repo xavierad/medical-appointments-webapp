@@ -3,8 +3,8 @@
   <h3>Clients</h3>
     <?php
       $host = "db.tecnico.ulisboa.pt";
-      $user = "ist187094";
-      $pass = "stlk1710";
+      $user = "ist187136";
+      $pass = "rbtc1601";
       $dsn = "mysql:host=$host;dbname=$user";
       try
       {
@@ -55,17 +55,16 @@
           echo($row['gender']);
           echo("</td><td>");
           echo($row['age']);*/
-          echo("<td><a href=\"newappointment.php?client="); # alterar account_number!
-          echo($row['_name']. ", " .$row['VAT']);
-          echo("\">New appointment</a></td>\n");
           echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
+          echo("<td><a href=\"newappointment.php?client=");
+          echo($row['_name']. ", " .$row['VAT']);
+          echo("\">New appointment</a></td>\n");
           echo("</tr>\n");
         }
         echo("</table>\n");
-        echo("<td><a href=\"newclient.php?"); # alterar account_number!
-        # echo($row['account_number']); # alterar account_number!
+        echo("<td><a href=\"newclient.php?");
         echo("\"><p>New client</p></a></td>\n");
       }
       $connection = null;
