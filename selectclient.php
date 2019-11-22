@@ -58,7 +58,7 @@
           echo("<td><a href=\"newappointment.php?client="); # alterar account_number!
           echo($row['_name']. ", " .$row['VAT']);
           echo("\">New appointment</a></td>\n");
-          echo("<td><a href=\"consultations_appointments.php?VAT="); # alterar account_number!
+          echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
           echo("</tr>\n");
