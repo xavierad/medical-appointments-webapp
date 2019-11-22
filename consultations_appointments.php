@@ -27,22 +27,43 @@
       echo("<p>Error: {$info[2]}</p>");
       exit();
     }
-    echo("<h3>Table <em>Appointment</em></h3>");
+    echo("<h3>Appointments:</h3>");
     echo("<table border=\"1\">");
     echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>_description</td><td>VAT_client</td></tr>");
     foreach($result as $row)
     {
-      echo("<tr><td>");
-      echo($row['VAT_doctor']);
-      echo("</td><td>");
-      echo($row['date_timestamp']);
-      echo("</td><td>");
-      echo($row['_description']);
-      echo("</td><td>");
-      echo($row['VAT_client']);
-      echo("</td></tr>");
+      echo("<tr>\n");
+      echo("<td>{$row['VAT_doctor']}</td>\n");
+      echo("<td>{$row['date_timestamp']}</td>\n");
+      echo("<td>{$row['_description']}</td>\n");
+      echo("<td>{$row['VAT_client']}</td>\n");
+      echo("</tr>\n");
     }
-    echo("</table>");
+    echo("</table>\n\n");
+
+    $sql = "SELECT C.VAT_doctor, C.date_timestamp, C.SOAP_S, C.SOAP_O, C.SOAP_A, C.SOAP_P FROM consultation as C, appointment as A WHERE C.VAT_doctor = A.VAT_doctor AND C.date_timestamp = A.date_timestamp and A.VAT_client = '$VAT' ORDER BY C.date_timestamp";
+    $result = $connection->query($sql);
+    if ($result == FALSE)
+    {
+      $info = $connection->errorInfo();
+      echo("<p>Error: {$info[2]}</p>");
+      exit();
+    }
+    echo("<h3>Consultations:</h3>");
+    echo("<table border=\"1\">");
+    echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td></tr>");
+    foreach($result as $row)
+    {
+      echo("<tr>\n");
+      echo("<td>{$row['VAT_doctor']}</td>\n");
+      echo("<td>{$row['date_timestamp']}</td>\n");
+      echo("<td>{$row['SOAP_S']}</td>\n");
+      echo("<td>{$row['SOAP_O']}</td>\n");
+      echo("<td>{$row['SOAP_A']}</td>\n");
+      echo("<td>{$row['SOAP_P']}</td>\n");
+      echo("</tr>\n");
+    }
+    echo("</table>\n");
     $connection = null;
 ?>
   </body>
