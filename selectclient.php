@@ -42,12 +42,10 @@
         echo("<tr><td>Client VAT</td><td>Client name</td><td>Birth date</td></tr>");
         foreach($result as $row)
         {
-          echo("<tr><td>");
-          echo($row['VAT']);
-          echo("</td><td>");
-          echo($row['_name']);
-          echo("</td><td>");
-          echo($row['birth_date']);
+          echo("<tr>\n");
+          echo("<td>{$row['VAT']}</td>\n");
+          echo("<td>{$row['_name']}</td>\n");
+          echo("<td>{$row['birth_date']}</td>\n");
           /*echo($row['street']);
           echo("</td><td>");
           echo($row['city']);
@@ -60,12 +58,12 @@
           echo("<td><a href=\"newappointment.php?client="); # alterar account_number!
           echo($row['_name']. ", " .$row['VAT']);
           echo("\">New appointment</a></td>\n");
-          echo("<td><a href=\"consultations_appointments.php?client="); # alterar account_number!
-          echo($row['_name']. ", " .$row['VAT']);
+          echo("<td><a href=\"consultations_appointments.php?VAT="); # alterar account_number!
+          echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
-          echo("</td></tr>");
+          echo("</tr>\n");
         }
-        echo("</table>");
+        echo("</table>\n");
         echo("<td><a href=\"newclient.php?"); # alterar account_number!
         # echo($row['account_number']); # alterar account_number!
         echo("\"><p>New client</p></a></td>\n");
