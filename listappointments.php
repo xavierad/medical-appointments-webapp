@@ -35,7 +35,7 @@
       echo("<p>Error: {$info[2]}</p>");
       exit();
     }
-    echo("<h3>Free appointments for the client $VAT:</h3>");
+    echo("<h3>Free appointments:</h3>");
     echo("<table border=\"1\">");
     echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>_description</td><td>VAT_client</td></tr>");
     foreach($result as $row)
@@ -45,6 +45,9 @@
       echo("<td>{$row['date_timestamp']}</td>\n");
       echo("<td>{$row['_description']}</td>\n");
       echo("<td>{$row['VAT_client']}</td>\n");
+      echo("<td><a href=\"newconsultation.php?consultation=");
+      echo($row['VAT_doctor']. "," .$row['date_timestamp']);
+      echo("\">Add Consultation info</a></td>\n");
       echo("</tr>\n");
     }
     echo("</table>\n\n");
