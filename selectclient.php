@@ -39,7 +39,7 @@
       else
       {
         echo("<table border=\"1\" cellspacing=\"2\">\n");
-        echo("<tr><td>Client VAT</td><td>Client name</td><td>Birth date</td></tr>");
+        echo("<tr><td>Client's VAT</td><td>Client's name</td><td>Birth date</td></tr>");
         foreach($result as $row)
         {
           echo("<tr>\n");
@@ -58,8 +58,8 @@
           echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
-          echo("<td><a href=\"newappointment.php?client=");
-          echo($row['_name']. ", " .$row['VAT']);
+          echo("<td><a href=\"newappointment.php?VAT_client=".$row['VAT']."&client_name=".$row['_name']);
+          # echo($row['_name']. ", " .$row['VAT']);
           echo("\">New appointment</a></td>\n");
           echo("</tr>\n");
         }
