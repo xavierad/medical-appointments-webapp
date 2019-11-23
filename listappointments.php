@@ -19,7 +19,15 @@
 
     $VAT = $_REQUEST['VAT'];
 
-    $sql = "SELECT * FROM appointment WHERE VAT_client = '$VAT_client' AND date_timestamp = '$date_timestamp'";
+    $sql = "SELECT A.VAT_doctor, A.date_timestamp, A._description, A.VAT_client
+            FROM  appointment A
+            LEFT JOIN consultation C
+            ON A.date_timestamp = C.date_timestamp
+            AND A.VAT_doctor = C.VAT_doctor
+            WHERE C.date_timestamp is null
+            AND C.VAT_doctor is null
+            AND A.VAT_client = $VAT";
+
     $result = $connection->query($sql);
     if ($result == FALSE)
     {
