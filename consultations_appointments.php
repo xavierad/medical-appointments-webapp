@@ -39,8 +39,6 @@
       echo("<td>{$row['VAT_client']}</td>\n");
       echo("<td><a href=\"appointment.php?appointment=");
       echo($row['VAT_client']. "," .$row['date_timestamp']);
-      //echo($row['VAT_client']);
-      //echo($row['date_timestamp']);
       echo("\">Appointment Info</a></td>\n");
       echo("</tr>\n");
     }
@@ -66,6 +64,9 @@
       echo("<td>{$row['SOAP_O']}</td>\n");
       echo("<td>{$row['SOAP_A']}</td>\n");
       echo("<td>{$row['SOAP_P']}</td>\n");
+      echo("<td><a href=\"consultation.php?consultation=");
+      echo($row['VAT_doctor']. "," .$row['date_timestamp']);
+      echo("\">Consultation Info</a></td>\n");
       echo("</tr>\n");
     }
     echo("</table>\n");
