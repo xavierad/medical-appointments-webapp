@@ -26,7 +26,17 @@
       $date_timestamp = $tok;
     }
 
-    $sql = "SELECT * FROM consultation WHERE VAT_doctor = '$VAT_doctor' AND date_timestamp = '$date_timestamp'";
+    $sql = "SELECT C.VAT_doctor, C.date_timestamp, C.SOAP_S, C.SOAP_O, C.SOAP_A, C.SOAP_P, DC.ID, DC._description, P._name, P.lab, P.dosage, P._description
+            FROM consultation C, consultation_diagnostic CD, diagnostic_code DC, prescription P
+            WHERE C.VAT_doctor = '$VAT_doctor'
+            AND C.date_timestamp = '$date_timestamp'
+            AND C.VAT_doctor = CD.VAT_doctor
+            AND C.date_timestamp = CD.date_timestamp
+            AND CD.ID = DC.ID
+            AND CD.VAT_doctor = P.VAT_doctor
+            AND CD.date_timestamp = P.date_timestamp
+            AND CD.ID = P.ID";
+
     $result = $connection->query($sql);
     if ($result == FALSE)
     {
@@ -36,7 +46,7 @@
     }
     echo("<h3>Consultation Info:</h3>");
     echo("<table border=\"1\">");
-    echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td></tr>");
+    echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>");
     foreach($result as $row)
     {
       echo("<tr>\n");
@@ -46,6 +56,11 @@
       echo("<td>{$row['SOAP_O']}</td>\n");
       echo("<td>{$row['SOAP_A']}</td>\n");
       echo("<td>{$row['SOAP_P']}</td>\n");
+      echo("<td>{$row['ID']}</td>\n");
+      echo("<td>{$row[7]}</td>\n");
+      echo("<td>{$row['_name']}</td>\n");
+      echo("<td>{$row['dosage']}</td>\n");
+      echo("<td>{$row['_description']}</td>\n");
       echo("</tr>\n");
     }
     $connection = null;
