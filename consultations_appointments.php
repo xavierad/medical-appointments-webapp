@@ -70,6 +70,9 @@
       echo("</tr>\n");
     }
     echo("</table>\n");
+
+    echo("<td><a href=\"listappointments.php?VAT=$VAT");
+    echo("\"><p>New consultation</p></a></td>\n");
     $connection = null;
 ?>
   </body>
