@@ -17,11 +17,14 @@
       exit();
     }
 
-    $VAT_client = $_REQUEST['VAT_client'];
-    $date_timestamp = $_REQUEST['date_timestamp'];
-
-    echo("Search for: $VAT_client\n");
-    echo("Search for: $date_timestamp\n");
+    if ($tok !== false) {
+      $tok = strtok($_REQUEST['appointment'], ",");
+      $VAT_client = $tok;
+    }
+    if ($tok !== false) {
+      $tok = strtok(",");
+      $date_timestamp = $tok;
+    }
 
     $sql = "SELECT * FROM appointment WHERE VAT_client = '$VAT_client' AND date_timestamp = '$date_timestamp'";
     $result = $connection->query($sql);
