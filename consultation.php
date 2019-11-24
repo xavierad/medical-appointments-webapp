@@ -46,7 +46,7 @@
     }
     echo("<h3>Consultation Info:</h3>");
     echo("<table border=\"1\">");
-    echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>");
+    echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Lab</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>");
     foreach($result as $row)
     {
       echo("<tr>\n");
@@ -59,6 +59,7 @@
       echo("<td>{$row['ID']}</td>\n");
       echo("<td>{$row[7]}</td>\n");
       echo("<td>{$row['_name']}</td>\n");
+      echo("<td>{$row['lab']}</td>\n");
       echo("<td>{$row['dosage']}</td>\n");
       echo("<td>{$row['_description']}</td>\n");
       echo("</tr>\n");
