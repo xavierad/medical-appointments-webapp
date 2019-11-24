@@ -26,7 +26,47 @@
   value="<?=$VAT_doctor?>"/></p>
   <p><input type="hidden" name="date_timestamp"
   value="<?=$date_timestamp?>"/></p>
-  <p>Nurse (VAT): <input type="text" name="VAT_nurse"/></p>
+
+  <p>Nurse (VAT):
+    <select name="VAT_nurse">
+<?php
+  $host = "db.ist.utl.pt";
+  $user = "ist187094";
+  $pass = "stlk1710";
+  $dsn = "mysql:host=$host;dbname=$user";
+  try
+  {
+    $connection = new PDO($dsn, $user, $pass);
+  }
+  catch(PDOException $exception)
+  {
+    echo("<p>Error: ");
+    echo($exception->getMessage());
+    echo("</p>");
+    exit();
+  }
+
+  $sql = "SELECT VAT FROM nurse ORDER BY VAT";
+  $result = $connection->query($sql);
+  if ($result == FALSE)
+  {
+    $info = $connection->errorInfo();
+    echo("<p>Error: {$info[2]}</p>");
+    exit();
+  }
+
+  foreach($result as $row)
+  {
+    $VAT_nurse = $row['VAT'];
+    echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
+  }
+
+  $connection = null;
+?>
+  </select>
+  </p>
+
+
   <p>SOAP S: <input type="text" name="SOAP_S"/></p>
   <p>SOAP O: <input type="text" name="SOAP_O"/></p>
   <p>SOAP A: <input type="text" name="SOAP_A"/></p>
