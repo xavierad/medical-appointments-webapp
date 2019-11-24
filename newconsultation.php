@@ -20,7 +20,12 @@
     echo("<p>Doctor (VAT): $VAT_doctor</p>\n");
     echo("<p>Date: $date_timestamp</p>\n");
 ?>
-
+  <p><input type="hidden" name="VAT_client"
+  value="<?=$VAT_client?>"/></p>
+  <p><input type="hidden" name="VAT_doctor"
+  value="<?=$VAT_doctor?>"/></p>
+  <p><input type="hidden" name="date_timestamp"
+  value="<?=$date_timestamp?>"/></p>
   <p>Nurse (VAT): <input type="text" name="VAT_nurse"/></p>
   <p>SOAP S: <input type="text" name="SOAP_S"/></p>
   <p>SOAP O: <input type="text" name="SOAP_O"/></p>
@@ -29,10 +34,11 @@
   <p>Diagnostic code ID: <input type="text" name="dcID"/></p>
   <p>Diagnostic code description: <input type="text" name="dcDescription"/></p>
   <p>Prescription name: <input type="text" name="pName"/></p>
+  <p>Prescription lab: <input type="text" name="pLab"/></p>
   <p>Prescription dosage: <input type="text" name="pDosage"/></p>
   <p>Prescription description: <input type="text" name="pDescription"/></p>
 
   <p><input type="submit" value="Submit"/></p>
-  
+
   </body>
 </html>
