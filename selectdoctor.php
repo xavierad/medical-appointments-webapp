@@ -26,15 +26,22 @@
           echo("</p>");
           exit();
         }
-        # falta ver se a data de input tem um desfasamento de 1h das da base de dados e entre as 9h e as 17h
-        $time = $_REQUEST['time'];
-        $sql = "SELECT * FROM employee natural join doctor
-                where '$datetimestamp' not in (select appointment.date_timestamp
-                                             from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor)
-                      or '$time' not in (select time(appointment.date_timestamp)
-                                                   from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor)
 
+        $time = $_REQUEST['time'];
+        $sql = "SELECT * FROM employee natural join doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
+                where VAT not in (select VAT from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
+                                where'2020-12-23 12:20:00' between date_sub(appointment.date_timestamp, interval 1 hour) and date_add(appointment.date_timestamp, interval 1 hour))
+                group by VAT
                 order by _name";
+                  /* SELECT * FROM employee natural join doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
+                    where time('2020-12-24 12:20:00') >= all(select addtime(time(appointment.date_timestamp),'1:00:00')
+                                                   from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
+                                                   where date('2020-12-24 12:20:00')=date(appointment.date_timestamp))
+                    and '2020-12-23 12:20:00' <= all(select select subtime(time(appointment.date_timestamp),'1:00:00')
+                                                 from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
+                                                 where date('2020-12-24 12:20:00')=date(appointment.date_timestamp))
+
+                        order by _name;*/
         $result = $connection->query($sql);
         if ($result == FALSE)
         {
