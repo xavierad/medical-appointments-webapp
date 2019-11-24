@@ -12,8 +12,8 @@
     <p>Doctor:
       <?php
         $host = "db.ist.utl.pt";
-        $user = "ist187136";
-        $pass = "rbtc1601";
+        $user = "ist187094";
+        $pass = "stlk1710";
         $dsn = "mysql:host=$host;dbname=$user";
         try
         {
