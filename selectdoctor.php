@@ -30,7 +30,7 @@
         $time = $_REQUEST['time'];
         $sql = "SELECT * FROM employee natural join doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
                 where VAT not in (select VAT from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
-                                where'2020-12-23 12:20:00' between date_sub(appointment.date_timestamp, interval 1 hour) and date_add(appointment.date_timestamp, interval 1 hour))
+                                where'$datetimestamp' between date_sub(appointment.date_timestamp, interval 1 hour) and date_add(appointment.date_timestamp, interval 1 hour))
                 group by VAT
                 order by _name";
                   /* SELECT * FROM employee natural join doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
