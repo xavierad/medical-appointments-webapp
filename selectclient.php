@@ -21,7 +21,15 @@
       $VAT = $_REQUEST['VAT'];
       $name = $_REQUEST['name'];
       $address = $_REQUEST['address'];
-      $sql = "SELECT * FROM client WHERE (_name like '%$name%') "; # (VAT = $VAT) or (_name like '%$name%') or (city like '%$address%') or (zip like '%$address%') or (street like '%$address%'
+      echo($VAT);
+      echo($name);
+      echo($address);
+      $sql = "SELECT * FROM client
+              WHERE (_name like '%$name%' and '$name' is not null)";/*
+                or (city like '%$address%' and '$address' is not null)
+                or (zip like '%$address%' and '$address' is not null)
+                or (street like '%$address%' and '$address' is not null)
+                or (VAT = '$VAT' and '$VAT' is not null)";*/
       echo("<p>$sql</p>");
       $result = $connection->query($sql);
       if ($result == FALSE)

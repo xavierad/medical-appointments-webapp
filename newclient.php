@@ -10,26 +10,6 @@
   <p>Zip: <input type="text" name="zip"/></p>
   <p>Gender: <input type="text" name="gender"/></p>
   <p>Age: <input type="text" name="age"/></p>
-  <?php
-    $host = "db.ist.utl.pt";
-    $user = "ist187094";
-    $pass = "stlk1710";
-    $dsn = "mysql:host=$host;dbname=$user";
-    try
-    {
-      $connection = new PDO($dsn, $user, $pass);
-    }
-    catch(PDOException $exception)
-    {
-      echo("<p>Error: ");
-      echo($exception->getMessage());
-      echo("</p>");
-      exit();
-    }
-
-    $connection = null;
-  ?>
-  </p>
   <p><input type="submit" value="Submit"/></p>
   </form>
   </body>
