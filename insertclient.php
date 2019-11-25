@@ -26,9 +26,8 @@
     $age = $_REQUEST['age'];
 
     $sql = "INSERT INTO client VALUES ('$VAT', '$name', '$birth_date', '$street', '$city', '$zip', '$gender', $age)";
-    echo("<p>$sql</p>");
     $nrows = $connection->exec($sql);
-    echo("<p>Rows inserted: $nrows</p>");
+    echo("<p>A new client, $name ($VAT) was added!</p>");
     $connection = null;
   ?>
   </body>

@@ -21,9 +21,6 @@
       $VAT = $_REQUEST['VAT'];
       $name = $_REQUEST['name'];
       $address = $_REQUEST['address'];
-      echo($VAT);
-      echo($name);
-      echo($address);
       $sql = "SELECT * FROM client
               WHERE 1 ";
       if (!empty($VAT)) {
@@ -47,7 +44,6 @@
                 or (zip like '%$address%' and '$address' is not null)
                 or (street like '%$address%' and '$address' is not null)
                 or (VAT = '$VAT' and '$VAT' is not null)";*/
-      echo("<p>$sql</p>");
       $result = $connection->query($sql);
       if ($result == FALSE)
       {

@@ -22,7 +22,6 @@
       $_description = $_REQUEST['_description'];
       $VAT_client = $_REQUEST['VAT_client'];
       $sql = "INSERT INTO appointment VALUES ('$VAT_doctor', '$date_timestamp', '$_description', '$VAT_client')";
-      echo("<p>$sql</p>");
       $nrows = $connection->exec($sql);
       if ($nrows == FALSE)
       {
@@ -30,7 +29,9 @@
         echo("<p>Error: {$info[2]}</p>");
         exit();
       }
-      echo("<p>Rows inserted: $nrows</p>");
+      else{
+        echo("<p>New appointment was created to $_REQUEST[client_name] and dr. $_REQUEST[doctorname]</p>");
+      }
       $connection = null;
     ?>
   </body>

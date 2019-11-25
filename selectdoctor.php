@@ -56,7 +56,7 @@
           echo("<tr>\n");
           echo("<td>{$row['VAT']}</td>\n");
           echo("<td>{$row['_name']}</td>\n");
-          echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&VAT_client=".$_REQUEST['VAT_client']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
+          echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&doctorname=".$row['_name']."&VAT_client=".$_REQUEST['VAT_client']."&client_name=".$_REQUEST['client_name']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
           echo("\">Free</a></td>\n");
           echo("</tr>\n");
         }
