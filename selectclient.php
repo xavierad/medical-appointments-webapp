@@ -22,15 +22,15 @@
       $name = $_REQUEST['name'];
       $address = $_REQUEST['address'];
       $sql = "SELECT * FROM client
-              WHERE 1 ";
+              WHERE 1";
       if (!empty($VAT)) {
-       $sql .= "AND VAT = $VAT";
+       $sql .= " AND VAT = $VAT";
       }
       if (!empty($name)) {
-       $sql .= "AND _name like '%$name%'";
+       $sql .= " AND _name like '%$name%'";
       }
       if (!empty($address)) {
-       $sql .= "AND (city like '%$address%' or zip like '%$address%' or street like '%$address%')";
+       $sql .= " AND (city like '%$address%' or zip like '%$address%' or street like '%$address%')";
       }
       $result = $connection->query($sql);
       if ($result == FALSE)
@@ -48,22 +48,19 @@
       else
       {
         echo("<table border=\"1\" cellspacing=\"2\">\n");
-        echo("<tr><td>Client's VAT</td><td>Client's name</td><td>Birth date</td></tr>");
+        echo("<tr><td>Client's VAT</td><td>Client's name</td><td>Birth date</td><td>Street</td><td>City</td><td>Zip</td><td>Gender</td><td>Age</td></tr>");
         foreach($result as $row)
         {
           echo("<tr>\n");
           echo("<td>{$row['VAT']}</td>\n");
           echo("<td>{$row['_name']}</td>\n");
           echo("<td>{$row['birth_date']}</td>\n");
-          echo($row['street']);
+          echo("<td>{$row['street']}</td>");
+          echo("<td>{$row['city']}</td>");
+          echo("<td>{$row['zip']}</td>");
+          echo("<td>{$row['gender']}</td>");
+          echo("<td>{$row['age']}</td>");
           echo("</td><td>");
-          echo($row['city']);
-          echo("</td><td>");
-          echo($row['zip']);
-          echo("</td><td>");
-          echo($row['gender']);
-          echo("</td><td>");
-          echo($row['age']);
           echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
