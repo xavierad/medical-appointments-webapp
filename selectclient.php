@@ -25,7 +25,24 @@
       echo($name);
       echo($address);
       $sql = "SELECT * FROM client
-              WHERE (_name like '%$name%' and '$name' is not null)";/*
+              WHERE 1 ";
+      if (!empty($VAT)) {
+       $sql .= "AND VAT = $VAT";
+      }
+      if (!empty($name)) {
+       $sql .= "AND _name like '%$name%'";
+      }
+      if (!empty($address)) {
+       $sql .= "AND (city like '%$address%' or zip like '%$address%' or street like '%$address%')";
+      }
+
+              /*case when '$name' is not null then _name like '%$name%' else 1 end
+                and case when '$VAT' is not null then VAT='$VAT' else 1 end
+                and case when '$address' is not null then city like '%$address%' else 1 end
+                and case when '$address' is not null then zip like '%$address%' else 1 end
+                and case when '$address' is not null then street like '%$address%' else 1 end";*/
+
+              /*(_name like '%$name%' and '$name' is not null)";
                 or (city like '%$address%' and '$address' is not null)
                 or (zip like '%$address%' and '$address' is not null)
                 or (street like '%$address%' and '$address' is not null)
