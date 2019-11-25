@@ -32,18 +32,6 @@
       if (!empty($address)) {
        $sql .= "AND (city like '%$address%' or zip like '%$address%' or street like '%$address%')";
       }
-
-              /*case when '$name' is not null then _name like '%$name%' else 1 end
-                and case when '$VAT' is not null then VAT='$VAT' else 1 end
-                and case when '$address' is not null then city like '%$address%' else 1 end
-                and case when '$address' is not null then zip like '%$address%' else 1 end
-                and case when '$address' is not null then street like '%$address%' else 1 end";*/
-
-              /*(_name like '%$name%' and '$name' is not null)";
-                or (city like '%$address%' and '$address' is not null)
-                or (zip like '%$address%' and '$address' is not null)
-                or (street like '%$address%' and '$address' is not null)
-                or (VAT = '$VAT' and '$VAT' is not null)";*/
       $result = $connection->query($sql);
       if ($result == FALSE)
       {
@@ -67,7 +55,7 @@
           echo("<td>{$row['VAT']}</td>\n");
           echo("<td>{$row['_name']}</td>\n");
           echo("<td>{$row['birth_date']}</td>\n");
-          /*echo($row['street']);
+          echo($row['street']);
           echo("</td><td>");
           echo($row['city']);
           echo("</td><td>");
@@ -75,7 +63,7 @@
           echo("</td><td>");
           echo($row['gender']);
           echo("</td><td>");
-          echo($row['age']);*/
+          echo($row['age']);
           echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
