@@ -9,8 +9,7 @@
   <p>City: <input type="text" name="city" required/></p>
   <p>Zip: <input type="text" name="zip" required/></p>
   <p>Gender: <input type="text" name="gender" required/></p>
-  <p>Age: <input type="text" name="age" required/></p>
-  <p><input type="submit" value="Submit" required/></p>
+  <p><input type="submit"/></p>
   </form>
   </body>
 </html>

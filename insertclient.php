@@ -23,7 +23,7 @@
     $city = $_REQUEST['city'];
     $zip = $_REQUEST['zip'];
     $gender = $_REQUEST['gender'];
-    $age = $_REQUEST['age'];
+    $age = date_diff(date_create('1970-02-01'), date_create('today'))->y;
 
     $sql = "INSERT INTO client VALUES ('$VAT', '$name', '$birth_date', '$street', '$city', '$zip', '$gender', $age)";
     $nrows = $connection->exec($sql);
