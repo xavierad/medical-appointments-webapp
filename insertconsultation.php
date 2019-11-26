@@ -69,17 +69,20 @@
       }
       echo("<p>Rows inserted in (consultation_assistant): $nrows</p>");
 
-      $sql = "INSERT INTO consultation_diagnostic VALUES ('$VAT_doctor', '$date_timestamp', '$dcID')";
-      echo("<p>$sql</p>");
-      $nrows = $connection->exec($sql);
-      if ($nrows == FALSE)
-      {
-        $info = $connection->errorInfo();
-        echo("<p>Error: {$info[2]}</p>");
-        exit();
+      if (!empty($dcID)){
+        $sql = "INSERT INTO consultation_diagnostic VALUES ('$VAT_doctor', '$date_timestamp', '$dcID')";
+        echo("<p>$sql</p>");
+        $nrows = $connection->exec($sql);
+        if ($nrows == FALSE)
+        {
+          $info = $connection->errorInfo();
+          echo("<p>Error: {$info[2]}</p>");
+          exit();
+        }
+        echo("<p>Rows inserted in (consultation_diagnostic): $nrows</p>");
       }
-      echo("<p>Rows inserted in (consultation_diagnostic): $nrows</p>");
 
+      if (!empty($)){
       $sql = "INSERT INTO prescription VALUES ('$pName', '$pLab', '$VAT_doctor', '$date_timestamp', '$dcID', '$pDosage', '$pDescription')";
       echo("<p>$sql</p>");
       $nrows = $connection->exec($sql);
