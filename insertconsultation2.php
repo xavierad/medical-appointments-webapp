@@ -1,6 +1,6 @@
 <html>
   <body>
-    <form action="checkclient.php" method="post">
+    <form action="selectclient.php" method="post">
     <?php
       $host = "db.tecnico.ulisboa.pt";
       $user = "ist187094";
