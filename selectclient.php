@@ -68,7 +68,6 @@
           echo("<td>{$row['zip']}</td>");
           echo("<td>{$row['gender']}</td>");
           echo("<td>{$row['age']}</td>");
-          echo("</td><td>");
           echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
