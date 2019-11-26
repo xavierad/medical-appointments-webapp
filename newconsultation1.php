@@ -1,6 +1,6 @@
 <html>
   <body>
-  <form action="insertnurse.php" method="post">
+  <form action="insertconsultation1.php" method="post">
 <?php
     if ($tok !== false) {
       $tok = strtok($_REQUEST['appointment'], ",");
@@ -26,8 +26,6 @@
   value="<?=$VAT_doctor?>"/></p>
   <p><input type="hidden" name="date_timestamp"
   value="<?=$date_timestamp?>"/></p>
-
-  <p>Number of nurses: <input type="number" name="NoN"/></p>
 
   <p>SOAP S: <input type="text" name="SOAP_S"/></p>
   <p>SOAP O: <input type="text" name="SOAP_O"/></p>
