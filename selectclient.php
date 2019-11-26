@@ -20,7 +20,9 @@
 
       $VAT = $_REQUEST['VAT'];
       $name = $_REQUEST['name'];
-      $address = $_REQUEST['address'];
+      $city = $_REQUEST['city'];
+      $street = $_REQUEST['street'];
+      $zip = $_REQUEST['zip'];
       $sql = "SELECT * FROM client
               WHERE 1";
       if (!empty($VAT)) {
@@ -29,8 +31,14 @@
       if (!empty($name)) {
        $sql .= " AND _name like '%$name%'";
       }
-      if (!empty($address)) {
-       $sql .= " AND (city like '%$address%' or zip like '%$address%' or street like '%$address%')";
+      if (!empty($city)) {
+       $sql .= " AND (city like '%$city%')";
+      }
+      if (!empty($street)) {
+       $sql .= " AND (street like '%$street%')";
+      }
+      if (!empty($zip)) {
+       $sql .= " AND (zip like '%$zip%')";
       }
       $result = $connection->query($sql);
       if ($result == FALSE)
