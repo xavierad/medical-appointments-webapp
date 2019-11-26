@@ -20,17 +20,25 @@
 
       $VAT = $_REQUEST['VAT'];
       $name = $_REQUEST['name'];
-      $address = $_REQUEST['address'];
+      $city = $_REQUEST['city'];
+      $street = $_REQUEST['street'];
+      $zip = $_REQUEST['zip'];
       $sql = "SELECT * FROM client
-              WHERE 1 ";
+              WHERE 1";
       if (!empty($VAT)) {
-       $sql .= "AND VAT = $VAT";
+       $sql .= " AND VAT = $VAT";
       }
       if (!empty($name)) {
-       $sql .= "AND _name like '%$name%'";
+       $sql .= " AND _name like '%$name%'";
       }
-      if (!empty($address)) {
-       $sql .= "AND (city like '%$address%' or zip like '%$address%' or street like '%$address%')";
+      if (!empty($city)) {
+       $sql .= " AND (city like '%$city%')";
+      }
+      if (!empty($street)) {
+       $sql .= " AND (street like '%$street%')";
+      }
+      if (!empty($zip)) {
+       $sql .= " AND (zip like '%$zip%')";
       }
       $result = $connection->query($sql);
       if ($result == FALSE)
@@ -43,39 +51,35 @@
       echo("<p>$nrows client(s) matched</p>");
       if ($nrows == 0)
       {
-        echo("<p>There is no client with such VAT number, name or address.</p>");
+        echo("<p>There is no client with such VAT number, name or address. Click de link below to create a new client</p>");
       }
       else
       {
         echo("<table border=\"1\" cellspacing=\"2\">\n");
-        echo("<tr><td>Client's VAT</td><td>Client's name</td><td>Birth date</td></tr>");
+        echo("<tr><td>Client's VAT</td><td>Client's name</td><td>Birth date</td><td>Street</td><td>City</td><td>Zip</td><td>Gender</td><td>Age</td></tr>");
         foreach($result as $row)
         {
           echo("<tr>\n");
           echo("<td>{$row['VAT']}</td>\n");
           echo("<td>{$row['_name']}</td>\n");
           echo("<td>{$row['birth_date']}</td>\n");
-          echo($row['street']);
+          echo("<td>{$row['street']}</td>");
+          echo("<td>{$row['city']}</td>");
+          echo("<td>{$row['zip']}</td>");
+          echo("<td>{$row['gender']}</td>");
+          echo("<td>{$row['age']}</td>");
           echo("</td><td>");
-          echo($row['city']);
-          echo("</td><td>");
-          echo($row['zip']);
-          echo("</td><td>");
-          echo($row['gender']);
-          echo("</td><td>");
-          echo($row['age']);
           echo("<td><a href=\"consultations_appointments.php?VAT=");
           echo($row['VAT']);
           echo("\">Consultations/Appointments</a></td>\n");
           echo("<td><a href=\"newappointment.php?VAT_client=".$row['VAT']."&client_name=".$row['_name']);
-          # echo($row['_name']. ", " .$row['VAT']);
           echo("\">New appointment</a></td>\n");
           echo("</tr>\n");
         }
         echo("</table>\n");
-        echo("<td><a href=\"newclient.php?");
-        echo("\"><p>New client</p></a></td>\n");
       }
+      echo("<td><a href=\"newclient.php?");
+      echo("\"><p>New client</p></a></td>\n");
       $connection = null;
     ?>
   </body>
