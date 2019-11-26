@@ -1,6 +1,6 @@
 <html>
   <body>
-  <form action="insertconsultation3.php" method="post">
+  <form action="insertprescription.php" method="post">
     <?php
 
       $VAT_doctor = $_REQUEST['VAT_doctor'];
@@ -9,17 +9,15 @@
 
       echo("<h3>Insert a diagnostic for the consultation:</h3>");
 
-
     ?>
-
     <p><input type="hidden" name="VAT_doctor"
     value="<?=$VAT_doctor?>"/></p>
     <p><input type="hidden" name="date_timestamp"
     value="<?=$date_timestamp?>"/></p>
 
     <p>Diagnostic (ID):
-      <select name="dcID">
-  <?php
+      <select name="ID">
+    <?php
     $host = "db.ist.utl.pt";
     $user = "ist187094";
     $pass = "stlk1710";
@@ -47,8 +45,8 @@
 
     foreach($result as $row)
     {
-      $dcID = $row['ID'];
-      echo("<option value=\"$dcID\">$dcID</option>");
+      $ID = $row['ID'];
+      echo("<option value=\"$ID\">$ID</option>");
     }
 
 
@@ -57,12 +55,8 @@
     </select>
     </p>
 
-    <?php
-    echo("<p><a href=\"insertprescription.php?VAT_doctor=".$VAT_doctor."&date_timestamp=".$date_timestamp."&dcID=".$dcID);
-    echo("\">Add Prescription</a></p>\n");
-    ?>
 
   <p><input type="submit" value="Add"/></p>
-
+  </form>
   </body>
 </html>
