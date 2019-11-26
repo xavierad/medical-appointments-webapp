@@ -51,7 +51,7 @@
       echo("<p>$nrows client(s) matched</p>");
       if ($nrows == 0)
       {
-        echo("<p>There is no client with such VAT number, name or address. CLick de link below to create a new client</p>");
+        echo("<p>There is no client with such VAT number, name or address. Click de link below to create a new client</p>");
       }
       else
       {
