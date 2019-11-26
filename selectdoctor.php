@@ -33,15 +33,6 @@
                                 where'$datetimestamp' between date_sub(appointment.date_timestamp, interval 1 hour) and date_add(appointment.date_timestamp, interval 1 hour))
                 group by VAT
                 order by _name";
-                  /* SELECT * FROM employee natural join doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
-                    where time('2020-12-24 12:20:00') >= all(select addtime(time(appointment.date_timestamp),'1:00:00')
-                                                   from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
-                                                   where date('2020-12-24 12:20:00')=date(appointment.date_timestamp))
-                    and '2020-12-23 12:20:00' <= all(select select subtime(time(appointment.date_timestamp),'1:00:00')
-                                                 from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
-                                                 where date('2020-12-24 12:20:00')=date(appointment.date_timestamp))
-
-                        order by _name;*/
         $result = $connection->query($sql);
         if ($result == FALSE)
         {
