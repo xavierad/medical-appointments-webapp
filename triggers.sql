@@ -6,18 +6,9 @@ for a client is inserted into the database.
 
 -- for each new appointment created
 delimiter $$
-create trigger check_age before update on client
+create trigger check_age before insert on appointment
 for each row
 begin
- if new.amount < 0 then
-   insert into account values (new.loan_number,
-                               new.branch_name,
-                               (-1)*new.amount);
- insert into depositor (
-   select customer_name, loan_number
-   from borrower as b
-   where b.loan_number = new.loan_number);
- set new.amount = 0;
- end if;
+  update client set client.age = (select DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(client.birth_date, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(client.birth_date, '00-%m-%d')) ) where client.VAT=appointment.VAT_client
 end$$
 delimiter ;
