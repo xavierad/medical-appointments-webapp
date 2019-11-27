@@ -18,6 +18,38 @@
         try
         {
           $connection = new PDO($dsn, $user, $pass);
+
+          $time = $_REQUEST['time'];
+          $sql = "SELECT * FROM employee natural join doctor
+                  where VAT not in (select VAT from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
+                                  where :datetimestamp between date_sub(appointment.date_timestamp, interval 1 hour) and date_add(appointment.date_timestamp, interval 1 hour))
+                  group by VAT
+                  order by _name";
+          $stmt = $connection->prepare($sql);
+
+          if ($stmt == FALSE)
+          {
+            $info = $connection->errorInfo();
+            echo("<p>Error: {$info[2]}</p>");
+            exit();
+          }
+          else {
+            $stmt->bindParam(':datetimestamp', $datetimestamp);
+            # execution
+            $stmt->execute();
+            echo("<table border=\"1\" cellspacing=\"2\">\n");
+            echo("<tr><td>Doctor's VAT</td><td>Doctor's name</td><td>Status</td></tr>");
+            foreach($stmt as $row)
+            {
+              echo("<tr>\n");
+              echo("<td>{$row['VAT']}</td>\n");
+              echo("<td>{$row['_name']}</td>\n");
+              echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&doctorname=".$row['_name']."&VAT_client=".$_REQUEST['VAT_client']."&client_name=".$_REQUEST['client_name']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
+              echo("\">Free</a></td>\n");
+              echo("</tr>\n");
+            }
+            echo("</table>\n");
+          }
         }
         catch(PDOException $exception)
         {
@@ -26,32 +58,6 @@
           echo("</p>");
           exit();
         }
-
-        $time = $_REQUEST['time'];
-        $sql = "SELECT * FROM employee natural join doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
-                where VAT not in (select VAT from doctor left outer join appointment on doctor.VAT=appointment.VAT_doctor
-                                where '$datetimestamp' between date_sub(appointment.date_timestamp, interval 1 hour) and date_add(appointment.date_timestamp, interval 1 hour))
-                group by VAT
-                order by _name";
-        $result = $connection->query($sql);
-        if ($result == FALSE)
-        {
-          $info = $connection->errorInfo();
-          echo("<p>Error: {$info[2]}</p>");
-          exit();
-        }
-        echo("<table border=\"1\" cellspacing=\"2\">\n");
-        echo("<tr><td>Doctor's VAT</td><td>Doctor's name</td><td>Status</td></tr>");
-        foreach($result as $row)
-        {
-          echo("<tr>\n");
-          echo("<td>{$row['VAT']}</td>\n");
-          echo("<td>{$row['_name']}</td>\n");
-          echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&doctorname=".$row['_name']."&VAT_client=".$_REQUEST['VAT_client']."&client_name=".$_REQUEST['client_name']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
-          echo("\">Free</a></td>\n");
-          echo("</tr>\n");
-        }
-        echo("</table>\n");
 
         $connection = null;
       ?>
