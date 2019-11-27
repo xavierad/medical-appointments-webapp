@@ -229,13 +229,13 @@ insert into phone_number_employee values('13490', 1005);
 insert into phone_number_employee values('15574', 1006);
 insert into phone_number_employee values('16347', 1007);
 
-insert into receptionist values('15574');
-insert into receptionist values('16347');
-
 insert into doctor values('25001', 'Anesthesiology', 'this is Janes biography', 'janesweettoth@gmail.com');-- permanent
 insert into doctor values('15101', 'Pediatric dentistry', 'this is Andres biography','andrefernandes@gmail.com');-- permanent
 insert into doctor values('10120', 'Dental public health', 'this is Jorges biography','goodenough@gmail.com');-- trainee
 insert into doctor values('11982', 'Implant dentistry','this is Deolindas biography', 'marvilla@gmail.com');-- trainee
+
+insert into receptionist values('15574');
+insert into receptionist values('16347');
 
 insert into nurse values('12309');
 insert into nurse values('13490');
