@@ -36,7 +36,9 @@
       exit();
     }
 
-    $sql = "SELECT VAT FROM nurse ORDER BY VAT";
+    $sql = "SELECT VAT FROM nurse N
+            WHERE N.VAT NOT IN (SELECT CA.VAT_nurse FROM consultation_assistant CA WHERE CA.VAT_doctor = '$VAT_doctor' AND CA.date_timestamp = '$date_timestamp')";
+
     $result = $connection->query($sql);
     if ($result == FALSE)
     {

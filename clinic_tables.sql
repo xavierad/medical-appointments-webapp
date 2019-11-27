@@ -128,7 +128,7 @@ create table consultation_assistant
  (VAT_doctor char(10),
   date_timestamp char(20),
   VAT_nurse char(10),
-  primary key(VAT_doctor, date_timestamp),
+  primary key(VAT_doctor, date_timestamp, VAT_nurse),
   foreign key(VAT_doctor, date_timestamp) references consultation(VAT_doctor, date_timestamp) on delete cascade,
   foreign key(VAT_nurse) references nurse(VAT) on delete cascade);
 
