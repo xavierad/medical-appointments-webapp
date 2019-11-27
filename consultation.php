@@ -1,5 +1,6 @@
 <html>
   <body>
+    <h3>Consultation Info:</h3>
     <table border=\"1\">
     <tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Lab</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>
 
@@ -44,7 +45,8 @@
       echo("<p>Error: {$info[2]}</p>");
       exit();
     }
-
+    //echo("<table border=\"1\">");
+    //echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Lab</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>");
     foreach($result as $row)
     {
       echo("<tr>\n");
@@ -77,10 +79,9 @@
       exit();
     }
 
-    $sql = "SELECT C.VAT_doctor, C.date_timestamp, C.SOAP_S, C.SOAP_O, C.SOAP_A, C.SOAP_P, CD.ID
+    $sql = "SELECT C.VAT_doctor, C.date_timestamp, C.SOAP_S, C.SOAP_O, C.SOAP_A, C.SOAP_P, CD.ID, DC._description
             FROM consultation C, consultation_diagnostic CD, diagnostic_code DC
-            WHERE (C.VAT_doctor NOT IN (SELECT P.VAT_doctor FROM prescription P)
-              OR C.date_timestamp NOT IN (SELECT P.date_timestamp FROM prescription P))
+            WHERE CD.ID  NOT IN (SELECT P.ID FROM prescription P WHERE P.VAT_doctor='$VAT_doctor' AND P.date_timestamp='$date_timestamp')
             AND C.VAT_doctor = '$VAT_doctor'
             AND C.date_timestamp = '$date_timestamp'
             AND C.VAT_doctor = CD.VAT_doctor
@@ -95,6 +96,8 @@
       exit();
     }
 
+    //echo("<table border=\"1\">");
+    //echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Lab</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>");
     foreach($result as $row)
     {
       echo("<tr>\n");
@@ -148,6 +151,8 @@
       exit();
     }
 
+    //echo("<table border=\"1\">");
+    //echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Lab</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>");
     foreach($result as $row)
     {
       echo("<tr>\n");
