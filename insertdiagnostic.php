@@ -34,7 +34,9 @@
       exit();
     }
 
-    $sql = "SELECT ID FROM diagnostic_code ORDER BY ID";
+    $sql = "SELECT DC.ID FROM diagnostic_code DC
+            WHERE DC.ID NOT IN (SELECT CD.ID FROM consultation_diagnostic CD WHERE CD.VAT_doctor = '$VAT_doctor' AND CD.date_timestamp = '$date_timestamp')";
+
     $result = $connection->query($sql);
     if ($result == FALSE)
     {
