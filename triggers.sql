@@ -104,8 +104,6 @@ begin
 end$$
 delimiter ;
 
-
-
 -- b)
 -- ensure trainee cannot be a permanent doctor
 drop trigger if exists ensure_train_not_perm_insert;
@@ -159,6 +157,65 @@ begin
   if new.VAT in (select VAT from trainee_doctor) then
     signal sqlstate '45000'
     set message_text = 'Already exists a trainee doctor with this VAT number! A trainee doctor cannot be a permanent!';
+  end if;
+end$$
+delimiter ;
+
+
+/* 3-
+Write triggers to ensure that different individuals (doctors or clients) cannot
+have the same phone number.
+*/
+-- ensure client phone is not the same as doctor's
+drop trigger if exists ensure_cphone_not_dphone_insert;
+delimiter $$
+create trigger ensure_cphone_not_dphone_insert before insert on phone_number_client
+for each row
+begin
+  if new.phone in (select phone from phone_number_employee natural join doctor) then
+    signal sqlstate '45000'
+    set message_text = 'This phone number is not valid! There is a doctor with the same phone number!';
+  end if;
+end$$
+delimiter ;
+
+drop trigger if exists ensure_cphone_not_dphone_update;
+delimiter $$
+create trigger ensure_cphone_not_dphone_update before update on phone_number_client
+for each row
+begin
+  if new.phone in (select phone from phone_number_employee natural join doctor) then
+    signal sqlstate '45000'
+    set message_text = 'This phone number is not valid! There is a doctor with the same phone number!';
+  end if;
+end$$
+delimiter ;
+
+-- ensure doctor phone is not the same as client's
+drop trigger if exists ensure_dphone_not_cphone_insert;
+delimiter $$
+create trigger ensure_dphone_not_cphone_insert before insert on phone_number_employee
+for each row
+begin
+  if new.VAT in (select VAT from doctor) then
+    if new.phone in (select phone from phone_number_client) then
+      signal sqlstate '45000'
+      set message_text = 'This phone number is not valid! There is a client with the same phone number!';
+    end if;
+  end if;
+end$$
+delimiter ;
+
+drop trigger if exists ensure_dphone_not_cphone_update;
+delimiter $$
+create trigger ensure_dphone_not_cphone_update before update on phone_number_employee
+for each row
+begin
+  if new.VAT in (select VAT from doctor) then
+    if new.phone in (select phone from phone_number_client) then
+      signal sqlstate '45000'
+      set message_text = 'This phone number is not valid! There is a client with the same phone number!';
+    end if;
   end if;
 end$$
 delimiter ;
