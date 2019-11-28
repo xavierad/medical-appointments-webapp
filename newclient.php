@@ -9,8 +9,8 @@
   <p>City: <input type="text" name="city" required/></p>
   <p>Zip: <input type="text" name="zip" required/></p>
   <p>Gender:
-    <input type="radio" name="gender" value="M" required> Male<br>
-    <input type="radio" name="gender" value="F" required> Female<br>
+    <input type="radio" name="gender" value="M" required> Male
+    <input type="radio" name="gender" value="F" required> Female</p>
   <p><input type="submit"/></p>
   </form>
   </body>
