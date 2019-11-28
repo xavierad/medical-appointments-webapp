@@ -9,7 +9,8 @@ begin
 	WHERE C.VAT = A.VAT_client
 	AND C.gender = _gender
 	AND A.date_timestamp LIKE CONCAT(_year, '%')
-	AND C.age BETWEEN lower_age AND upper_age;
+	AND C.age BETWEEN lower_age AND upper_age
+	AND A.date_timestamp < CURRENT_TIMESTAMP;
 
 	SELECT count(CO.VAT_doctor) into n_con
 	FROM consultation CO, appointment A, client CL
