@@ -219,6 +219,7 @@ insert into employee values('12309', 'Ermelinda Boavida', '1945-12-17', 'Cinco B
 insert into employee values('13490', 'Zacarias Fernandes', '1950-02-3', 'Janelas Street', 'Lisboa', '1110-260', '6501', 2000.12);-- enferm
 insert into employee values('15574', 'Joaquim Ahmad', '1965-03-14', 'Linhas de ferro Street', 'Lisboa','1100-100', '0912', 1000.11);-- recep
 insert into employee values('16347', 'Maria Peixeira', '1980-01-02', 'Rés-do-chão Street', 'Lisboa', '1200-230', '6832', 2000.09);-- recep
+insert into employee values('11900', 'Jacki Chan', '1980-01-02', 'Rés-do-chão Street', 'Lisboa', '1200-230', '6831', 2000.09);-- doctor
 
 insert into phone_number_employee values('25001', 1000);
 insert into phone_number_employee values('15101', 1001);
@@ -228,11 +229,13 @@ insert into phone_number_employee values('12309', 1004);
 insert into phone_number_employee values('13490', 1005);
 insert into phone_number_employee values('15574', 1006);
 insert into phone_number_employee values('16347', 1007);
+insert into phone_number_employee values('11900', 1008);
 
 insert into doctor values('25001', 'Anesthesiology', 'this is Janes biography', 'janesweettoth@gmail.com');-- permanent
 insert into doctor values('15101', 'Pediatric dentistry', 'this is Andres biography','andrefernandes@gmail.com');-- permanent
 insert into doctor values('10120', 'Dental public health', 'this is Jorges biography','goodenough@gmail.com');-- trainee
 insert into doctor values('11982', 'Implant dentistry','this is Deolindas biography', 'marvilla@gmail.com');-- trainee
+insert into doctor values('11900', 'Implant dentistry','this is Jackie Chan', 'jackjack@gmail.com');-- trainee
 
 insert into receptionist values('15574');
 insert into receptionist values('16347');
