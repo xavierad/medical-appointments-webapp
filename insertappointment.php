@@ -36,8 +36,9 @@
           $stmt->execute();
           $nrows = $stmt->rowCount();
           if ($nrows==1){
-            echo("<br>");
-            echo("<p>New appointment was created to $_REQUEST[client_name] and dr. $_REQUEST[doctorname]!</p>");
+            echo("<br><div class=\"container\">");
+            echo("<div class=\"alert alert-success\">");
+            echo("<strong>New appointment was created to $_REQUEST[client_name] and dr. $_REQUEST[doctorname]!</strong></div></div>");
           }
         }
       }
