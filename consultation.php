@@ -171,6 +171,8 @@
       echo("</tr>\n");
     }
     echo("</table>\n\n");
+    echo("<td><a href=\"newprocedure.php?VAT_doctor=".$row['VAT_doctor']."&date_timestamp=".$row['date_timestamp']);
+    echo("\"><p>Insert Dental Charting Procedure</p></a></td>\n");
     $connection = null;
 ?>
 
