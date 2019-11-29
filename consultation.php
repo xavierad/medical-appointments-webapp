@@ -31,7 +31,7 @@
       exit();
     }
 
-    $sql = "SELECT C.VAT_doctor, C.date_timestamp, C.SOAP_S, C.SOAP_O, C.SOAP_A
+    $sql = "SELECT C.VAT_doctor, C.date_timestamp, C.SOAP_S, C.SOAP_O, C.SOAP_A, C.SOAP_P
             FROM consultation C
             WHERE (C.VAT_doctor NOT IN (SELECT CD.VAT_doctor FROM consultation_diagnostic CD)
               OR C.date_timestamp NOT IN (SELECT CD.date_timestamp FROM consultation_diagnostic CD))
