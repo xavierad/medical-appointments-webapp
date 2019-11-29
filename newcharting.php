@@ -11,9 +11,9 @@
     <?php
       for($i=0; $i < $_REQUEST['insertions']; $i++){
 
-        echo ("<p><strong>Quadrant:</strong> <input type=\"number\" name=\"quadrant".$i."\" min=\"1\" max=\"4\">");
-        echo ("<strong> Number:</strong> <input type=\"number\" name=\"_number".$i."\" min=\"1\" max=\"8\">");
-        echo (" Measure: <input type=\"text\" name=\"measure".$i."\"><p>");
+        echo ("<p><strong>Quadrant:</strong> <input type=\"number\" name=\"quadrant".$i."\" min=\"1\" max=\"4\" required>");
+        echo ("<strong> Number:</strong> <input type=\"number\" name=\"_number".$i."\" min=\"1\" max=\"8\" required>");
+        echo (" Measure: <input type=\"text\" name=\"measure".$i."\" required><p>");
         echo ("<p>Description: <input type=\"text\" name=\"_desc".$i."\"><p>");
         echo("<p>");
 
