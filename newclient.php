@@ -9,7 +9,7 @@
         <h3>Insert a new client</h3>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <p>VAT: <input type="text" class="form-control" name="VAT" placeholder="Enter client's VAT" required/></p>
+            <p>VAT (max. 10 digits): <input type="text" class="form-control" name="VAT" maxlength="10" placeholder="Enter client's VAT" required/></p>
           </div>
           <div class="form-group col-md-4">
             <p>Name: <input type="text" class="form-control" name="name" placeholder="Enter client's name" required/></p>
