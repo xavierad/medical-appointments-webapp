@@ -1,13 +1,33 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
-    <form action="selectclient.php" method="post">
-      <h3>Search client</h3>
-      <p>Client's VAT: <input type="text" name="VAT"/></p>
-      <p>Client's name: <input type="text" name="name"/></p>
-      <p>Client's city: <input type="text" name="city"/></p>
-      <p>Client's street: <input type="text" name="street"/></p>
-      <p>Client's zip: <input type="text" name="zip"/></p>
-      <p><input type="submit"/></p>
-    </form>
+    <div class="container">
+      <br>
+      <h3>Search for a client</h3>
+      <form action="selectclient.php" method="post">
+      <div class="form-row">
+          <div class="form-group col-md-4">
+            <p>VAT: <input type="text" class="form-control" name="VAT" placeholder="Enter client's VAT"/></p>
+          </div>
+          <div class="form-group col-md-4">
+            <p>Name: <input type="text" class="form-control" name="name" placeholder="Enter client's name"/></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <p>City: <input type="text"class="form-control" name="city" placeholder="Enter city"/></p>
+          </div>
+          <div class="form-group col-md-4">
+            <p>Street: <input type="text" class="form-control" name="street" placeholder="Enter street"/></p>
+          </div>
+          <div class="form-group col-md-4">
+            <p>Zip code: <input type="text"class="form-control" name="zip" placeholder="Enter zip code"/></p>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit"/>Search</button>
+      </form>
+    </div>
   </body>
 </html>

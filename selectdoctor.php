@@ -1,10 +1,16 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
+    <div class="container">
+    <br>
     <form method="post">
-    <h3>Insert a new appointment</h3>
-    <p>Client: <?=$_REQUEST['client_name'].', '.$_REQUEST['VAT_client']?>
-      <input type="hidden" name="client_name" value="<?=$_REQUEST['client_name']?>">
-      <input type="hidden" name="VAT_client" value="<?=$_REQUEST['VAT_client']?>"></p>
+    <h3>Insert a new appointment:</h3>
+    <p>Client:
+      <?=$_REQUEST['client_name'].', '.$_REQUEST['VAT_client']?>
+      <input type="hidden" class="form-control" name="client_name" value="<?=$_REQUEST['client_name']?>">
+      <input type="hidden" class="form-control" name="VAT_client" value="<?=$_REQUEST['VAT_client']?>"></p>
     <p>Date: <?=$datetimestamp = $_REQUEST['date'].' '.$_REQUEST['time']?>
       <input type="hidden" name="datetimestamp" value="<?=$datetimestamp?>"></p>
     <p>Description: <?=$_REQUEST['_description']?>
@@ -37,15 +43,15 @@
             $stmt->bindParam(':datetimestamp', $datetimestamp);
             # execution
             $stmt->execute();
-            echo("<table border=\"1\" cellspacing=\"2\">\n");
-            echo("<tr><td>Doctor's VAT</td><td>Doctor's name</td><td>Status</td></tr>");
+            echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
+            echo("<tr><td><center<Doctor's VAT</center></td><td><center>Doctor's name</center></td><td><center>Status</center></td></tr>");
             foreach($stmt as $row)
             {
               echo("<tr>\n");
-              echo("<td>{$row['VAT']}</td>\n");
-              echo("<td>{$row['_name']}</td>\n");
+              echo("<td><center>{$row['VAT']}</center></td>\n");
+              echo("<td><center>{$row['_name']}</center></td>\n");
               echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&doctorname=".$row['_name']."&VAT_client=".$_REQUEST['VAT_client']."&client_name=".$_REQUEST['client_name']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
-              echo("\">Free</a></td>\n");
+              echo("\"><center>Available</center></a></td>\n");
               echo("</tr>\n");
             }
             echo("</table>\n");

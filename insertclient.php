@@ -1,4 +1,7 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
   <?php
     $host = "db.tecnico.ulisboa.pt";
@@ -41,6 +44,7 @@
         $stmt->execute();
         $nrows = $stmt->rowCount();
         if ($nrows==1){
+          echo("<br>");
           echo("<p>A new client, $name ($VAT) was added!</p>");
         }
       }

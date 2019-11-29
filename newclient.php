@@ -1,17 +1,38 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
-  <form action="insertclient.php" method="post">
-  <h3>Insert a new client</h3>
-  <p>VAT: <input type="text" name="VAT" required/></p>
-  <p>Name: <input type="text" name="name" required/></p>
-  <p>Birth date <input type="date" name="birth_date" required></p>
-  <p>Street: <input type="text" name="street" required/></p>
-  <p>City: <input type="text" name="city" required/></p>
-  <p>Zip: <input type="text" name="zip" required/></p>
-  <p>Gender:
-    <input type="radio" name="gender" value="M" required> Male
-    <input type="radio" name="gender" value="F" required> Female</p>
-  <p><input type="submit"/></p>
-  </form>
+    <div class="container">
+      <form action="insertclient.php" method="post">
+        <br>
+        <h3>Insert a new client</h3>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <p>VAT: <input type="text" class="form-control" name="VAT" placeholder="Enter client's VAT" required/></p>
+          </div>
+          <div class="form-group col-md-4">
+            <p>Name: <input type="text" class="form-control" name="name" placeholder="Enter client's name" required/></p>
+          </div>
+          <div class="form-group col-md-2">
+            <p>Birth-date: <input type="date" class="form-control" name="birth_date" required></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <p>City: <input type="text"class="form-control" name="city" placeholder="Enter city" required/></p>
+          </div>
+          <div class="form-group col-md-4">
+            <p>Street: <input type="text" class="form-control" name="street" placeholder="Enter street" required/></p>
+          </div>
+          <div class="form-group col-md-2">
+            <p>Zip code: <input type="text"class="form-control" name="zip" placeholder="Enter zip code" required/></p>
+          </div>
+        </div>
+        <p>Gender:
+          <input type="radio" name="gender" value="M" required> Male
+          <input type="radio" name="gender" value="F" required> Female</p>
+        <p><input type="submit" class="btn btn-primary" value="Insert this client"/></p>
+      </form>
   </body>
 </html>

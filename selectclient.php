@@ -1,5 +1,10 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
+  <div class="container">
+  <br>
   <h3>Clients</h3>
     <?php
       $host = "db.tecnico.ulisboa.pt";
@@ -66,24 +71,24 @@
           }
           else
           {
-            echo("<table border=\"1\" cellspacing=\"2\">\n");
-            echo("<tr><td>Client's VAT</td><td>Client's name</td><td>Birth date</td><td>Street</td><td>City</td><td>Zip</td><td>Gender</td><td>Age</td></tr>");
+            echo("<table border=\"1\" cellspacing=\"5\">\n");
+            echo("<tr><td><center>VAT</center></td><td><center>Name</center></td><td><center>Birth date</center></td><td><center>Street</center></td><td><center>City</center></td><td><center>Zip</center></td><td><center>Gender</center></td><td><center>Age</center></td></tr>");
             foreach($stmt as $row)
             {
-              echo("<tr>\n");
-              echo("<td>{$row['VAT']}</td>\n");
-              echo("<td>{$row['_name']}</td>\n");
-              echo("<td>{$row['birth_date']}</td>\n");
-              echo("<td>{$row['street']}</td>");
-              echo("<td>{$row['city']}</td>");
-              echo("<td>{$row['zip']}</td>");
-              echo("<td>{$row['gender']}</td>");
-              echo("<td>{$row['age']}</td>");
+              echo("<tr>");
+              echo("<td><center>{$row['VAT']}</center></td>");
+              echo("<td><center>{$row['_name']}</center></td>");
+              echo("<td><center>{$row['birth_date']}</center></td>");
+              echo("<td><center>{$row['street']}</center></td>");
+              echo("<td><center>{$row['city']}</center></td>");
+              echo("<td><center>{$row['zip']}</center></td>");
+              echo("<td><center>{$row['gender']}</center></td>");
+              echo("<td><center>{$row['age']}</center></td>");
               echo("<td><a href=\"consultations_appointments.php?VAT=");
               echo($row['VAT']);
-              echo("\">Consultations/Appointments</a></td>\n");
+              echo("\"><center>Consultations/Appointments</center></a></td>");
               echo("<td><a href=\"newappointment.php?VAT_client=".$row['VAT']."&client_name=".$row['_name']);
-              echo("\">New appointment</a></td>\n");
+              echo("\"><center>New appointment</center></a></td>\n");
               echo("</tr>\n");
             }
             echo("</table>\n");
