@@ -19,7 +19,7 @@
         $date_timestamp = $tok;
       }
 
-      $sql = "SELECT * FROM appointment WHERE VAT_client = ':VAT_client' AND date_timestamp = ':date_timestamp'";
+      $sql = "SELECT * FROM appointment WHERE VAT_client = :VAT_client AND date_timestamp = :date_timestamp";
       $stmt = $connection->prepare($sql);
       if ($stmt == FALSE)
       {
