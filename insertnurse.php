@@ -27,30 +27,39 @@
     try
     {
       $connection = new PDO($dsn, $user, $pass);
+
+
+      $sql = "SELECT VAT FROM nurse N
+              WHERE N.VAT NOT IN (SELECT CA.VAT_nurse FROM consultation_assistant CA WHERE CA.VAT_doctor = :VAT_doctor AND CA.date_timestamp = :date_timestamp)";
+
+      $stmt = $connection->prepare($sql);
+
+      if ($stmt== FALSE)
+      {
+        $info = $connection->errorInfo();
+        echo("<p>Error: {$info[2]}</p>");
+        exit();
+      }
+      else {
+        $stmt->bindParam(':VAT_doctor', $VAT_doctor);
+        $stmt->bindParam(':date_timestamp', $date_timestamp);
+
+        $stmt->execute();
+
+        foreach($stmt as $row)
+        {
+          $VAT_nurse = $row['VAT'];
+          echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
+        }
+      }
     }
+
     catch(PDOException $exception)
     {
       echo("<p>Error: ");
       echo($exception->getMessage());
       echo("</p>");
       exit();
-    }
-
-    $sql = "SELECT VAT FROM nurse N
-            WHERE N.VAT NOT IN (SELECT CA.VAT_nurse FROM consultation_assistant CA WHERE CA.VAT_doctor = '$VAT_doctor' AND CA.date_timestamp = '$date_timestamp')";
-
-    $result = $connection->query($sql);
-    if ($result == FALSE)
-    {
-      $info = $connection->errorInfo();
-      echo("<p>Error: {$info[2]}</p>");
-      exit();
-    }
-
-    foreach($result as $row)
-    {
-      $VAT_nurse = $row['VAT'];
-      echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
     }
 
     $connection = null;
