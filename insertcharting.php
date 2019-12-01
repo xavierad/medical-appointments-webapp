@@ -36,17 +36,15 @@
           # execution
           $stmt->execute();
           $nrows = $stmt->rowCount();
-          echo("<strong>A new client was added: $nrows !</strong></div></div>");
-          if ($nrows==1){
+          if ($nrows > 0){
             echo("<br><div class=\"container\">");
             echo("<div class=\"alert alert-success\">");
-            echo("<strong>A new client was added!</strong></div></div>");
-            #echo("<p>A new client, $name ($VAT) was added!</p>");
+            echo("<strong>Rows inserted: $nrows</strong></div></div>");
           }
         }
 
         $sql = "DELETE IGNORE FROM procedure_charting WHERE VAT = :VAT_doctor AND date_timestamp = :date_timestamp";
-        echo("<p>$sql</p>");
+        echo("<p>$sql");
         $stmt = $connection->prepare($sql);
 
         if ($stmt== FALSE)
@@ -61,18 +59,17 @@
           # execution
           $stmt->execute();
           $nrows = $stmt->rowCount();
-          echo("<strong>A new client was added: $nrows !</strong></div></div>");
-          if ($nrows==1){
+          if ($nrows > 0){
             echo("<br><div class=\"container\">");
             echo("<div class=\"alert alert-success\">");
-            echo("<strong>A new client was added!</strong></div></div>");
-            #echo("<p>A new client, $name ($VAT) was added!</p>");
+            echo("<strong>Rows deleted: $nrows</strong></div></div>");
           }
         }
 
         $sql = "INSERT INTO procedure_charting VALUES (:_name, :VAT_doctor, :date_timestamp, :quadrant, :_number, :_desc, :measure)";
-        echo("<p>$sql</p>");
+        echo("<p>$sql");
         $stmt = $connection->prepare($sql);
+        $_nrows = 0;
 
         if ($stmt== FALSE)
         {
@@ -99,13 +96,15 @@
           # execution
           $stmt->execute();
           $nrows = $stmt->rowCount();
-          echo("<strong>A new client was added: $nrows !</strong></div></div>");
-          if ($nrows==1){
+
+          if ($nrows > 0){
+            $_nrows = $_nrows + $nrows;
+          }
+          }
+          if ($_nrows > 0){
             echo("<br><div class=\"container\">");
             echo("<div class=\"alert alert-success\">");
-            echo("<strong>A new client was added!</strong></div></div>");
-            #echo("<p>A new client, $name ($VAT) was added!</p>");
-          }
+            echo("<strong>Rows inserted: $_nrows</strong></div></div>");
           }
         }
       }
