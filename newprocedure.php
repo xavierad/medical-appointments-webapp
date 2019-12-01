@@ -16,7 +16,7 @@
         <div class="form-group col-md-4">
         <p>Description: <input type=text name="_description"/></p>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-4">
         <p>Number of insertions: <input type=number name="insertions" min="1" max="32" required/></p>
         </div>
         <p><input type="submit" class="btn btn-primary" value="Start"/></p>
