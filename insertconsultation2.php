@@ -9,7 +9,37 @@
       try
       {
         $connection = new PDO($dsn, $user, $pass);
+
+
+        $VAT_doctor = $_REQUEST['VAT_doctor'];
+        $date_timestamp_aux = strtotime($_REQUEST['date_timestamp']);
+        $date_timestamp = date("Y-m-d H:i:s", $date_timestamp_aux);
+        $VAT_nurse = $_REQUEST['VAT_nurse'];
+
+        $sql = "INSERT INTO consultation_assistant VALUES (:VAT_doctor, :date_timestamp, :VAT_nurse)";
+
+        $stmt = $connection->prepare($sql);
+
+        if ($stmt== FALSE)
+        {
+          $info = $connection->errorInfo();
+          echo("<p>Error: {$info[2]}</p>");
+          exit();
+        }
+        else {
+          $stmt->bindParam(':VAT_doctor', $VAT_doctor);
+          $stmt->bindParam(':date_timestamp', $date_timestamp);
+          $stmt->bindParam(':VAT_nurse', $VAT_nurse);
+
+          $stmt->execute();
+
+          $nrows = $stmt->rowCount();
+          if ($nrows==1) {
+            echo("<strong>The nurse $VAT_nurse has been added to the consultation of $date_timestamp with the doctor $VAT_doctor</strong></div></div>");
+          }
+        }
       }
+
       catch(PDOException $exception)
       {
         echo("<p>Error: ");
@@ -17,23 +47,6 @@
         echo("</p>");
         exit();
       }
-
-      $VAT_doctor = $_REQUEST['VAT_doctor'];
-      $date_timestamp_aux = strtotime($_REQUEST['date_timestamp']);
-      $date_timestamp = date("Y-m-d H:i:s", $date_timestamp_aux);
-      $VAT_nurse = $_REQUEST['VAT_nurse'];
-
-      $sql = "INSERT INTO consultation_assistant VALUES ('$VAT_doctor', '$date_timestamp', '$VAT_nurse')";
-      echo("<p>$sql</p>");
-      $nrows = $connection->exec($sql);
-      if ($nrows == FALSE)
-      {
-        $info = $connection->errorInfo();
-        echo("<p>Error: {$info[2]}</p>");
-        exit();
-      }
-      echo("<p>Rows inserted in (consultation_assistant): $nrows</p>");
-
 
       echo("<h3>Insert more information on the consultation:</h3>");
 
