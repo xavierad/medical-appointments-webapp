@@ -21,35 +21,7 @@
       $VAT_doctor = $_REQUEST['VAT_doctor'];
       $date_timestamp_aux = strtotime($_REQUEST['date_timestamp']);
       $date_timestamp = date("Y-m-d H:i:s", $date_timestamp_aux);
-      $dcID = $_REQUEST['dcID'];
-      $name = $_REQUEST['_name'];
-      $dosage = $_REQUEST['dosage'];
-      $description = $_REQUEST['_description'];
 
-      $sql = "SELECT lab FROM medication WHERE _name = '$name'";
-      $result = $connection->query($sql);
-      if ($result == FALSE)
-      {
-        $info = $connection->errorInfo();
-        echo("<p>Error: {$info[2]}</p>");
-        exit();
-      }
-
-      foreach($result as $row)
-      {
-        $lab = $row['lab'];
-      }
-
-      $sql = "INSERT INTO prescription VALUES ('$name', '$lab', '$VAT_doctor', '$date_timestamp', '$dcID', '$dosage', '$description')";
-      echo("<p>$sql</p>");
-      $nrows = $connection->exec($sql);
-      if ($nrows == FALSE)
-      {
-        $info = $connection->errorInfo();
-        echo("<p>Error: {$info[2]}</p>");
-        exit();
-      }
-      echo("<p>Rows inserted in (prescription): $nrows</p>");
 
       echo("<h3>Insert more information on the consultation:</h3>");
 
