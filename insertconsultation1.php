@@ -9,7 +9,45 @@
       try
       {
         $connection = new PDO($dsn, $user, $pass);
+
+
+        $VAT_client = $_REQUEST['VAT_client'];
+        $VAT_doctor = $_REQUEST['VAT_doctor'];
+        $date_timestamp_aux = strtotime($_REQUEST['date_timestamp']);
+        $date_timestamp = date("Y-m-d H:i:s", $date_timestamp_aux);
+        $SOAP_S = $_REQUEST['SOAP_S'];
+        $SOAP_O = $_REQUEST['SOAP_O'];
+        $SOAP_A = $_REQUEST['SOAP_A'];
+        $SOAP_P = $_REQUEST['SOAP_P'];
+
+
+        $sql = "INSERT INTO consultation VALUES (:VAT_doctor, :date_timestamp, :SOAP_S, :SOAP_O, :SOAP_A, :SOAP_P)";
+
+        $stmt = $connection->prepare($sql);
+
+        if ($stmt== FALSE)
+        {
+          $info = $connection->errorInfo();
+          echo("<p>Error: {$info[2]}</p>");
+          exit();
+        }
+        else {
+          $stmt->bindParam(':VAT_doctor', $VAT_doctor);
+          $stmt->bindParam(':date_timestamp', $date_timestamp);
+          $stmt->bindParam(':SOAP_S', $SOAP_S);
+          $stmt->bindParam(':SOAP_O', $SOAP_O);
+          $stmt->bindParam(':SOAP_A', $SOAP_A);
+          $stmt->bindParam(':SOAP_P', $SOAP_P);
+
+          $stmt->execute();
+
+          $nrows = $stmt->rowCount();
+          if ($nrows==1) {
+            echo("<strong>A new consultation was added on $date_timestamp for the client $VAT_client with the doctor $VAT_doctor</strong></div></div>");
+          }
+        }
       }
+
       catch(PDOException $exception)
       {
         echo("<p>Error: ");
@@ -17,26 +55,6 @@
         echo("</p>");
         exit();
       }
-      $VAT_client = $_REQUEST['VAT_client'];
-      $VAT_doctor = $_REQUEST['VAT_doctor'];
-      $date_timestamp_aux = strtotime($_REQUEST['date_timestamp']);
-      $date_timestamp = date("Y-m-d H:i:s", $date_timestamp_aux);
-      $SOAP_S = $_REQUEST['SOAP_S'];
-      $SOAP_O = $_REQUEST['SOAP_O'];
-      $SOAP_A = $_REQUEST['SOAP_A'];
-      $SOAP_P = $_REQUEST['SOAP_P'];
-
-
-      $sql = "INSERT INTO consultation VALUES ('$VAT_doctor', '$date_timestamp', '$SOAP_S', '$SOAP_O', '$SOAP_A', '$SOAP_P')";
-      echo("<p>$sql</p>");
-      $nrows = $connection->exec($sql);
-      if ($nrows == FALSE)
-      {
-        $info = $connection->errorInfo();
-        echo("<p>Error: {$info[2]}</p>");
-        exit();
-      }
-      echo("<p>Rows inserted in (consultation): $nrows</p>");
 
       echo("<h3>Insert more information on the consultation:</h3>");
 
