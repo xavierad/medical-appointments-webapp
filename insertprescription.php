@@ -1,6 +1,6 @@
 <html>
   <body>
-  <form action="insertconsultation4.php" method="post">
+  <form action="insertconsultation3.php" method="post">
 
     <?php
     $VAT_doctor = $_REQUEST['VAT_doctor'];
@@ -15,7 +15,32 @@
     try
     {
       $connection = new PDO($dsn, $user, $pass);
+
+
+      $sql = "INSERT INTO consultation_diagnostic VALUES (:VAT_doctor, :date_timestamp, :dcID)";
+
+      $stmt = $connection->prepare($sql);
+
+      if ($stmt== FALSE)
+      {
+        $info = $connection->errorInfo();
+        echo("<p>Error: {$info[2]}</p>");
+        exit();
+      }
+      else {
+        $stmt->bindParam(':VAT_doctor', $VAT_doctor);
+        $stmt->bindParam(':date_timestamp', $date_timestamp);
+        $stmt->bindParam(':dcID', $dcID);
+
+        $stmt->execute();
+
+        $nrows = $stmt->rowCount();
+        if ($nrows==1) {
+          echo("<strong>The diagnostic $dcID has been added to the consultation of $date_timestamp with the doctor $VAT_doctor</strong></div></div>");
+        }
+      }
     }
+
     catch(PDOException $exception)
     {
       echo("<p>Error: ");
@@ -24,16 +49,6 @@
       exit();
     }
 
-    $sql = "INSERT INTO consultation_diagnostic VALUES ('$VAT_doctor', '$date_timestamp', '$dcID')";
-    echo("<p>$sql</p>");
-    $nrows = $connection->exec($sql);
-    if ($nrows == FALSE)
-    {
-      $info = $connection->errorInfo();
-      echo("<p>Error: {$info[2]}</p>");
-      exit();
-    }
-    echo("<p>Rows inserted in (consultation_diagnostic): $nrows</p>");
     $connection = null;
 
     echo("<h3>Insert a prescription for the diagnostic:</h3>");
@@ -56,7 +71,29 @@
     try
     {
       $connection = new PDO($dsn, $user, $pass);
+
+
+      $sql = "SELECT _name FROM medication ORDER BY _name";
+
+      $stmt = $connection->prepare($sql);
+
+      if ($stmt== FALSE)
+      {
+        $info = $connection->errorInfo();
+        echo("<p>Error: {$info[2]}</p>");
+        exit();
+      }
+      else {
+        $stmt->execute();
+        
+        foreach($stmt as $row)
+        {
+          $_name = $row['_name'];
+          echo("<option value=\"$_name\">$_name</option>");
+        }
+      }
     }
+
     catch(PDOException $exception)
     {
       echo("<p>Error: ");
@@ -64,22 +101,6 @@
       echo("</p>");
       exit();
     }
-
-    $sql = "SELECT _name FROM medication ORDER BY _name";
-    $result = $connection->query($sql);
-    if ($result == FALSE)
-    {
-      $info = $connection->errorInfo();
-      echo("<p>Error: {$info[2]}</p>");
-      exit();
-    }
-
-    foreach($result as $row)
-    {
-      $_name = $row['_name'];
-      echo("<option value=\"$_name\">$_name</option>");
-    }
-
 
     $connection = null;
   ?>
@@ -95,7 +116,7 @@
   <p><input type="submit" value="Add"/></p>
   </form>
 
-  <form action="insertconsultation5.php" method="post">
+  <form action="insertconsultation4.php" method="post">
   <input type="submit" value="No prescription">
   <?php
   $VAT_doctor = $_REQUEST['VAT_doctor'];
