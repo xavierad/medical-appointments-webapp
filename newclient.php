@@ -15,7 +15,7 @@
             <p>Name: <input type="text" class="form-control" name="name" placeholder="Enter client's name" required/></p>
           </div>
           <div class="form-group col-md-2">
-            <p>Birth-date: <input type="date" class="form-control" name="birth_date" required></p>
+            <p>Birth-date: <input type="date" class="form-control" name="birth_date" max=<?=date("Y-m-d")?> required></p>
           </div>
         </div>
         <div class="form-row">
