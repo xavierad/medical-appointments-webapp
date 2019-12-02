@@ -1,5 +1,10 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
+  <div class="container">
+  <br>
 <?php
     $host = "db.tecnico.ulisboa.pt";
     $user = "ist187094";
@@ -25,19 +30,20 @@
         $stmt->bindParam(':VAT', $VAT);
         $stmt->execute();
 
+
         echo("<h3>Appointments:</h3>");
-        echo("<table border=\"1\">");
-        echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>_description</td><td>VAT_client</td></tr>");
+        echo("<table border=\"1\" cellspacing=\"5\">\n");
+        echo("<tr><td><center>VAT doctor</center</td><td><center>Date</center</td><td><center>Description</center</td><td><center>VAT client</center</td></tr>");
         foreach($stmt as $row)
         {
           echo("<tr>\n");
-          echo("<td>{$row['VAT_doctor']}</td>\n");
-          echo("<td>{$row['date_timestamp']}</td>\n");
-          echo("<td>{$row['_description']}</td>\n");
-          echo("<td>{$row['VAT_client']}</td>\n");
+          echo("<td><center>{$row['VAT_doctor']}</center</td>\n");
+          echo("<td><center>{$row['date_timestamp']}</center</td>\n");
+          echo("<td><center>{$row['_description']}</center</td>\n");
+          echo("<td><center>{$row['VAT_client']}</center</td>\n");
           echo("<td><a href=\"appointment.php?appointment=");
           echo($row['VAT_client']. "," .$row['date_timestamp']);
-          echo("\">Appointment Info</a></td>\n");
+          echo("\"><center>Appointment Info</center</a></td>\n");
           echo("</tr>\n");
         }
         echo("</table>\n\n");
@@ -56,21 +62,22 @@
         $stmt->bindParam(':VAT', $VAT);
         $stmt->execute();
 
+        echo("<br><br>");
         echo("<h3>Consultations:</h3>");
-        echo("<table border=\"1\">");
-        echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td></tr>");
+        echo("<table border=\"1\" cellspacing=\"5\">\n");
+        echo("<tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>SOAP S</center></td><td><center>SOAP O</center></td><td><center>SOAP A</center></td><td><center>SOAP P</center></td></tr>");
         foreach($stmt as $row)
         {
           echo("<tr>\n");
-          echo("<td>{$row['VAT_doctor']}</td>\n");
-          echo("<td>{$row['date_timestamp']}</td>\n");
-          echo("<td>{$row['SOAP_S']}</td>\n");
-          echo("<td>{$row['SOAP_O']}</td>\n");
-          echo("<td>{$row['SOAP_A']}</td>\n");
-          echo("<td>{$row['SOAP_P']}</td>\n");
+          echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
+          echo("<td><center>{$row['date_timestamp']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_S']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_O']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_A']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_P']}</center></td>\n");
           echo("<td><a href=\"consultation.php?consultation=");
           echo($row['VAT_doctor']. "," .$row['date_timestamp']);
-          echo("\">Consultation Info</a></td>\n");
+          echo("\"><center>Consultation Info</center></a></td>\n");
           echo("</tr>\n");
         }
         echo("</table>\n");
