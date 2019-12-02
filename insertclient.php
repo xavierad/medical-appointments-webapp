@@ -47,7 +47,6 @@
           echo("<br><div class=\"container\">");
           echo("<div class=\"alert alert-success\">");
           echo("<strong>A new client, $name ($VAT) was added!</strong></div></div>");
-          #echo("<p>A new client, $name ($VAT) was added!</p>");
         }
       }
     }
