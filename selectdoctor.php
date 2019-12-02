@@ -15,7 +15,7 @@
       <input type="hidden" name="datetimestamp" value="<?=$datetimestamp?>"></p>
     <p>Description: <?=$_REQUEST['_description']?>
       <input type="hidden" name="_description" value="<?=$_REQUEST['_description']?>"></p>
-    <p>Doctor:
+    <p>Doctors:
       <?php
         $host = "db.ist.utl.pt";
         $user = "ist187094";
@@ -44,10 +44,11 @@
             # execution
             $stmt->execute();
             $nrows = $stmt->rowCount();
-            echo("<p>$nrows client(s) matched</p>");
             if ($nrows == 0)
             {
-              echo("<p>There is no doctor available!</p>");
+              echo("<br><div class=\"container\">");
+              echo("<div class=\"alert alert-warning\">");
+              echo("<strong>There is no doctor available!</strong></div></div>");
             }
             else
             {
@@ -64,6 +65,7 @@
               }
               echo("</table>\n");
             }
+            echo("<p>$nrows doctor(s) matched</p>");
           }
         }
         catch(PDOException $exception)
