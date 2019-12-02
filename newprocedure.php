@@ -15,10 +15,12 @@
         </div>
        </div>
         <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
         <p>Description: <input type=text name="_description"/></p>
         </div>
-        <div class="form-group col-md-4">
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-2">
         <p>Number of insertions: <input type=number name="insertions" min="1" max="32" required/></p>
         </div>
         </div>
