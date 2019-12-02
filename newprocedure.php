@@ -12,10 +12,8 @@
           <input type="hidden" name="date_timestamp" value="<?=$_REQUEST['date_timestamp']?>"></p>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <p>Description: <input type=text name="_description"/></p>
+          <p>Description: <input type=text name="_description" placeholder="Enter a description for this procedure" required/></p>
         </div>
-      </div>
-      <div class="form-row">
         <div class="form-group col-md-2">
           <p>Number of insertions: <input type=number name="insertions" min="1" max="32" required/></p>
         </div>
