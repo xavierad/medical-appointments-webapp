@@ -23,17 +23,17 @@
             for($i=0; $i < $_REQUEST['insertions']; $i++){
 
               echo ("<div class=\"form-row\">");
-              echo ("<div class=\"form-group col-md-2\">");
-              echo ("<p><strong>Quadrant:</strong> <input type=\"number\" name=\"quadrant".$i."\" min=\"1\" max=\"4\" required><p>");
+              echo ("<div class=\"form-group col-md-1\">");
+              echo ("<p><strong>Quadrant:</strong> <input type=\"number\" class=\"form-control\" name=\"quadrant".$i."\" min=\"1\" max=\"4\" required><p>");
               echo ("</div>");
-              echo ("<div class=\"form-group col-md-2\">");
-              echo ("<p><strong>Number:</strong> <input type=\"number\" name=\"_number".$i."\" min=\"1\" max=\"8\" required><p>");
+              echo ("<div class=\"form-group col-md-1\">");
+              echo ("<p><strong>Number:</strong> <input type=\"number\" class=\"form-control\" name=\"_number".$i."\" min=\"1\" max=\"8\" required><p>");
+              echo ("</div>");
+              echo ("<div class=\"form-group col-md-1.5\">");
+              echo ("<p>Measure: <input type=\"text\" class=\"form-control\" name=\"measure".$i."\" required><p>");
               echo ("</div>");
               echo ("<div class=\"form-group col-md-4\">");
-              echo ("<p>Measure: <input type=\"text\" name=\"measure".$i."\" required><p>");
-              echo ("</div>");
-              echo ("<div class=\"form-group col-md-6\">");
-              echo ("<p>Description: <input type=\"text\" name=\"_desc".$i."\"><p>");
+              echo ("<p>Description: <input type=\"text\" class=\"form-control\" name=\"_desc".$i."\"><p>");
               echo ("</div>");
               echo ("</div>");
               echo("<p>");
