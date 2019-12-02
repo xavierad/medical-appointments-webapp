@@ -71,7 +71,7 @@
           }
           else
           {
-            echo("<table border=\"1\" cellspacing=\"5\">\n");
+            echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
             echo("<tr><td><center>VAT</center></td><td><center>Name</center></td><td><center>Birth date</center></td><td><center>Street</center></td><td><center>City</center></td><td><center>Zip</center></td><td><center>Gender</center></td><td><center>Age</center></td></tr>");
             foreach($stmt as $row)
             {

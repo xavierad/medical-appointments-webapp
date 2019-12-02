@@ -43,18 +43,27 @@
             $stmt->bindParam(':datetimestamp', $datetimestamp);
             # execution
             $stmt->execute();
-            echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
-            echo("<tr><td><center<Doctor's VAT</center></td><td><center>Doctor's name</center></td><td><center>Status</center></td></tr>");
-            foreach($stmt as $row)
+            $nrows = $stmt->rowCount();
+            echo("<p>$nrows client(s) matched</p>");
+            if ($nrows == 0)
             {
-              echo("<tr>\n");
-              echo("<td><center>{$row['VAT']}</center></td>\n");
-              echo("<td><center>{$row['_name']}</center></td>\n");
-              echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&doctorname=".$row['_name']."&VAT_client=".$_REQUEST['VAT_client']."&client_name=".$_REQUEST['client_name']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
-              echo("\"><center>Available</center></a></td>\n");
-              echo("</tr>\n");
+              echo("<p>There is no doctor available!</p>");
             }
-            echo("</table>\n");
+            else
+            {
+              echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
+              echo("<tr><td><center<Doctor's VAT</center></td><td><center>Doctor's name</center></td><td><center>Status</center></td></tr>");
+              foreach($stmt as $row)
+              {
+                echo("<tr>\n");
+                echo("<td><center>{$row['VAT']}</center></td>\n");
+                echo("<td><center>{$row['_name']}</center></td>\n");
+                echo("<td><a href=\"insertappointment.php?VAT_doctor=".$row['VAT']."&doctorname=".$row['_name']."&VAT_client=".$_REQUEST['VAT_client']."&client_name=".$_REQUEST['client_name']."&datetimestamp=".$datetimestamp."&_description=".$_REQUEST['_description']);
+                echo("\"><center>Available</center></a></td>\n");
+                echo("</tr>\n");
+              }
+              echo("</table>\n");
+            }
           }
         }
         catch(PDOException $exception)
