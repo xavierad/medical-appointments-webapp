@@ -7,7 +7,7 @@ for a client is inserted into the database.
 -- for each new appointment created
 drop trigger if exists check_age;
 delimiter $$
-create trigger check_age before insert on appointment
+create trigger check_age after insert on appointment
 for each row
 begin
   update client set client.age = (select TIMESTAMPDIFF(YEAR,client.birth_date,CURDATE()))
@@ -114,9 +114,9 @@ begin
   if new.VAT in (select VAT from permanent_doctor) then
     signal sqlstate '45000'
     set message_text = 'Already exists a permanent doctor with this VAT number! A permanent cannot be a trainee!';
-  elseif new.supervisor in  (select VAT from permanent_doctor) then
+  elseif new.supervisor in  (select VAT from trainee_doctor) then
     signal sqlstate '45000'
-    set message_text = 'Already exists a supervisor (permanent doctor) with this VAT number! A supervisor cannot be a trainee!';
+    set message_text = 'Already exists a trainee doctor with this VAT number! A trainee cannot be a supervisor!';
   end if;
 end$$
 delimiter ;
@@ -129,9 +129,9 @@ begin
   if new.VAT in (select VAT from permanent_doctor) then
     signal sqlstate '45000'
     set message_text = 'Already exists a permanent doctor with this VAT number! A permanent cannot be a trainee!';
-  elseif new.supervisor in  (select VAT from permanent_doctor) then
+  elseif new.supervisor in  (select VAT from trainee_doctor) then
     signal sqlstate '45000'
-    set message_text = 'Already exists a supervisor (permanent doctor) with this VAT number! A supervisor cannot be a trainee!';
+    set message_text = 'Already exists a trainee doctor with this VAT number! A trainee cannot be a supervisor!';
   end if;
 end$$
 delimiter ;
@@ -175,8 +175,7 @@ begin
   if new.phone in (select phone from phone_number_employee natural join doctor) then
     signal sqlstate '45000'
     set message_text = 'This phone number is not valid! There is a doctor with the same phone number!';
-  end if;
-  if new.phone in (select phone from phone_number_client) then
+  elseif new.phone in (select phone from phone_number_client where new.VAT != VAT) then
     signal sqlstate '45000'
     set message_text = 'This phone number is not valid! There is another client with the same phone number!';
   end if;
@@ -191,8 +190,7 @@ begin
   if new.phone in (select phone from phone_number_employee natural join doctor) then
     signal sqlstate '45000'
     set message_text = 'This phone number is not valid! There is a doctor with the same phone number!';
-  end if;
-  if new.phone in (select phone from phone_number_client) then
+  elseif new.phone in (select phone from phone_number_client where new.VAT != VAT) then
     signal sqlstate '45000'
     set message_text = 'This phone number is not valid! There is another client with the same phone number!';
   end if;
@@ -210,7 +208,7 @@ begin
       signal sqlstate '45000'
       set message_text = 'This phone number is not valid! There is a client with the same phone number!';
     end if;
-    if new.phone in (select phone from phone_number_employee natural join doctor) then
+    if new.phone in (select phone from phone_number_employee natural join doctor where new.VAT != VAT) then
       signal sqlstate '45000'
       set message_text = 'This phone number is not valid! There is another doctor with the same phone number!';
     end if;
@@ -228,7 +226,7 @@ begin
       signal sqlstate '45000'
       set message_text = 'This phone number is not valid! There is a client with the same phone number!';
     end if;
-    if new.phone in (select phone from phone_number_employee natural join doctor) then
+    if new.phone in (select phone from phone_number_employee natural join doctor new.VAT != VAT) then
       signal sqlstate '45000'
       set message_text = 'This phone number is not valid! There is another doctor with the same phone number!';
     end if;
