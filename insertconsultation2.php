@@ -1,4 +1,7 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
     <form action="selectclient.php" method="post">
     <?php
@@ -35,7 +38,9 @@
 
           $nrows = $stmt->rowCount();
           if ($nrows==1) {
-            echo("<strong>The nurse $VAT_nurse has been added to the consultation of $date_timestamp with the doctor $VAT_doctor</strong></div></div>");
+            echo("<br><div class=\"container\">");
+            echo("<div class=\"alert alert-success\">");
+            echo("<strong>The nurse $VAT_nurse has been added to the consultation of $date_timestamp with the doctor $VAT_doctor</strong></div>");
           }
         }
       }
@@ -48,18 +53,21 @@
         exit();
       }
 
+      echo("<br><div class=\"container\">");
       echo("<h3>Insert more information on the consultation:</h3>");
-
+      echo("<br>");
       echo("<td><a href=\"insertnurse.php?VAT_doctor=".$VAT_doctor."&date_timestamp=".$date_timestamp);
       echo("\">Add Nurse</a></p>\n");
 
       echo("<p><a href=\"insertdiagnostic.php?VAT_doctor=".$VAT_doctor."&date_timestamp=".$date_timestamp);
       echo("\">Add Diagnostic</a></p>\n");
-
+      echo("<br><br>");
 
 
       $connection = null;
     ?>
-    <p><input type="submit" value="Finish"/></p>
+    <p><button class="btn btn-primary" type="submit"/>Finish</button></p>
+    </div>
+  </div>
   </body>
 </html>

@@ -68,7 +68,7 @@
 
       echo("<p><a href=\"insertdiagnostic.php?VAT_doctor=".$VAT_doctor."&date_timestamp=".$date_timestamp);
       echo("\">Add Diagnostic</a></p>\n");
-      echo("<br>");
+      echo("<br><br>");
 
       $connection = null;
     ?>

@@ -1,5 +1,10 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
+  <div class="container">
+  <br>
   <form action="insertconsultation3.php" method="post">
 
     <?php
@@ -36,7 +41,9 @@
 
         $nrows = $stmt->rowCount();
         if ($nrows==1) {
-          echo("<strong>The diagnostic $dcID has been added to the consultation of $date_timestamp with the doctor $VAT_doctor</strong></div></div>");
+          echo("<br><div class=\"container\">");
+          echo("<div class=\"alert alert-success\">");
+          echo("<strong>The diagnostic $dcID has been added to the consultation of $date_timestamp with the doctor $VAT_doctor</strong></div>");
         }
       }
     }
@@ -51,7 +58,9 @@
 
     $connection = null;
 
+    echo("<br>");
     echo("<h3>Insert a prescription for the diagnostic:</h3>");
+    echo("<br>");
     ?>
 
     <p><input type="hidden" name="VAT_doctor"
@@ -85,7 +94,7 @@
       }
       else {
         $stmt->execute();
-        
+
         foreach($stmt as $row)
         {
           $_name = $row['_name'];
@@ -112,12 +121,12 @@
 
 
 
-
-  <p><input type="submit" value="Add"/></p>
+  <br><br>
+  <p><button class="btn btn-primary" type="submit"/>Add</button></p>
   </form>
 
   <form action="insertconsultation4.php" method="post">
-  <input type="submit" value="No prescription">
+  <input type="submit" class="btn btn-primary" value="No prescription">
   <?php
   $VAT_doctor = $_REQUEST['VAT_doctor'];
   $date_timestamp_aux = strtotime($_REQUEST['date_timestamp']);
@@ -128,6 +137,6 @@
   <p><input type="hidden" name="date_timestamp"
   value="<?=$date_timestamp?>"/></p>
   </form>
-
+  </div>
   </body>
 </html>
