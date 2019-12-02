@@ -1,8 +1,14 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
-    <h3>Consultation Info:</h3>
-    <table border=\"1\">
-    <tr><td>VAT_doctor</td><td>date_timestamp</td><td>SOAP_S</td><td>SOAP_O</td><td>SOAP_A</td><td>SOAP_P</td><td>Diagnostic ID</td><td>Diagnostic Description</td><td>Prescription Name</td><td>Prescription Lab</td><td>Prescription Dosage</td><td>Prescription Description</td></tr>
+  <div class="container">
+  <br>
+  <h3>Consultation Info:</h3>
+  <br>
+  <table border=\"1\" cellspacing=\"5\">
+  <tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>SOAP S</center></td><td><center>SOAP O</center></td><td><center>SOAP A</center></td><td><center>SOAP P</center></td><td><center>Diagnostic ID</center></td><td><center>Diagnostic Description</center></td><td><center>Prescription Name</center></td><td><center>Prescription Lab</center></td><td><center>Prescription Dosage</center></td><td><center>Prescription Description</center></td></tr>
 
 <?php
 
@@ -47,12 +53,12 @@
         foreach($stmt as $row)
         {
           echo("<tr>\n");
-          echo("<td>{$row['VAT_doctor']}</td>\n");
-          echo("<td>{$row['date_timestamp']}</td>\n");
-          echo("<td>{$row['SOAP_S']}</td>\n");
-          echo("<td>{$row['SOAP_O']}</td>\n");
-          echo("<td>{$row['SOAP_A']}</td>\n");
-          echo("<td>{$row['SOAP_P']}</td>\n");
+          echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
+          echo("<td><center>{$row['date_timestamp']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_S']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_O']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_A']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_P']}</center></td>\n");
           echo("</tr>\n");
         }
       }
@@ -102,14 +108,14 @@
         foreach($stmt as $row)
         {
           echo("<tr>\n");
-          echo("<td>{$row['VAT_doctor']}</td>\n");
-          echo("<td>{$row['date_timestamp']}</td>\n");
-          echo("<td>{$row['SOAP_S']}</td>\n");
-          echo("<td>{$row['SOAP_O']}</td>\n");
-          echo("<td>{$row['SOAP_A']}</td>\n");
-          echo("<td>{$row['SOAP_P']}</td>\n");
-          echo("<td>{$row['ID']}</td>\n");
-          echo("<td>{$row[7]}</td>\n");
+          echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
+          echo("<td><center>{$row['date_timestamp']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_S']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_O']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_A']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_P']}</center></td>\n");
+          echo("<td><center>{$row['ID']}</center></td>\n");
+          echo("<td><center>{$row[7]}</center></td>\n");
           echo("</tr>\n");
         }
       }
@@ -161,18 +167,18 @@
         foreach($stmt as $row)
         {
           echo("<tr>\n");
-          echo("<td>{$row['VAT_doctor']}</td>\n");
-          echo("<td>{$row['date_timestamp']}</td>\n");
-          echo("<td>{$row['SOAP_S']}</td>\n");
-          echo("<td>{$row['SOAP_O']}</td>\n");
-          echo("<td>{$row['SOAP_A']}</td>\n");
-          echo("<td>{$row['SOAP_P']}</td>\n");
-          echo("<td>{$row['ID']}</td>\n");
-          echo("<td>{$row[7]}</td>\n");
-          echo("<td>{$row['_name']}</td>\n");
-          echo("<td>{$row['lab']}</td>\n");
-          echo("<td>{$row['dosage']}</td>\n");
-          echo("<td>{$row['_description']}</td>\n");
+          echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
+          echo("<td><center>{$row['date_timestamp']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_S']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_O']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_A']}</center></td>\n");
+          echo("<td><center>{$row['SOAP_P']}</center></td>\n");
+          echo("<td><center>{$row['ID']}</center></td>\n");
+          echo("<td><center>{$row[7]}</center></td>\n");
+          echo("<td><center>{$row['_name']}</center></td>\n");
+          echo("<td><center>{$row['lab']}</center></td>\n");
+          echo("<td><center>{$row['dosage']}</center></td>\n");
+          echo("<td><center>{$row['_description']}</center></td>\n");
           echo("</tr>\n");
         }
       }
