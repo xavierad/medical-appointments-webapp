@@ -12,7 +12,7 @@
           <p>Doctor: <?=$_REQUEST['VAT_doctor'].', '.$_REQUEST['date_timestamp']?>
             <input type="hidden" name="VAT_doctor" value="<?=$_REQUEST['VAT_doctor']?>"><p>
             <input type="hidden" name="date_timestamp" value="<?=$_REQUEST['date_timestamp']?>"></p>
-            <input type="hidden" name="description" value="<?=$_REQUEST['description']?>"></p>
+            <input type="hidden" name="_description" value="<?=$_REQUEST['_description']?>"></p>
           </div>
           <div class="form-group col-md-4">
           <p>Number of insertions: <?=$_REQUEST['insertions']?>

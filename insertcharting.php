@@ -1,4 +1,7 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
     <?php
       $host = "db.tecnico.ulisboa.pt";
@@ -18,15 +21,34 @@
 
         $connection->beginTransaction();
 
-        $sql = "INSERT IGNORE INTO procedure_in_consultation VALUES (:_name, :VAT_doctor, :date_timestamp, :_description)";
-        echo("<p>$sql</p>");
+        $sql = "DELETE IGNORE FROM procedure_in_consultation WHERE _name = :_name AND VAT_doctor = :VAT_doctor AND date_timestamp = :date_timestamp";
         $stmt = $connection->prepare($sql);
 
         if ($stmt== FALSE)
         {
           $info = $connection->errorInfo();
           echo("<p>Error: {$info[2]}</p>");
-          #exit();
+          $connection->rollback();
+          exit();
+        }
+        else{
+          $stmt->bindParam(':_name', $_name);
+          $stmt->bindParam(':VAT_doctor', $VAT_doctor);
+          $stmt->bindParam(':date_timestamp', $date_timestamp);
+          # execution
+          $stmt->execute();
+          $nrows = $stmt->rowCount();
+        }
+
+        $sql = "INSERT INTO procedure_in_consultation VALUES (:_name, :VAT_doctor, :date_timestamp, :_description)";
+        $stmt = $connection->prepare($sql);
+
+        if ($stmt== FALSE)
+        {
+          $info = $connection->errorInfo();
+          echo("<p>Error: {$info[2]}</p>");
+          $connection->rollback();
+          exit();
         }
         else{
           $stmt->bindParam(':_name', $_name);
@@ -36,22 +58,16 @@
           # execution
           $stmt->execute();
           $nrows = $stmt->rowCount();
-          if ($nrows > 0){
-            echo("<br><div class=\"container\">");
-            echo("<div class=\"alert alert-success\">");
-            echo("<strong>Rows inserted: $nrows</strong></div></div>");
-          }
         }
 
         $sql = "DELETE IGNORE FROM procedure_charting WHERE VAT = :VAT_doctor AND date_timestamp = :date_timestamp";
-        echo("<p>$sql");
         $stmt = $connection->prepare($sql);
 
         if ($stmt== FALSE)
         {
           $info = $connection->errorInfo();
           echo("<p>Error: {$info[2]}</p>");
-          #exit();
+          exit();
         }
         else{
           $stmt->bindParam(':VAT_doctor', $VAT_doctor);
@@ -59,15 +75,9 @@
           # execution
           $stmt->execute();
           $nrows = $stmt->rowCount();
-          if ($nrows > 0){
-            echo("<br><div class=\"container\">");
-            echo("<div class=\"alert alert-success\">");
-            echo("<strong>Rows deleted: $nrows</strong></div></div>");
-          }
         }
 
         $sql = "INSERT INTO procedure_charting VALUES (:_name, :VAT_doctor, :date_timestamp, :quadrant, :_number, :_desc, :measure)";
-        echo("<p>$sql");
         $stmt = $connection->prepare($sql);
         $_nrows = 0;
 
@@ -75,8 +85,7 @@
         {
           $info = $connection->errorInfo();
           echo("<p>Error: {$info[2]}</p>");
-          $connection->rollback();
-          #exit();
+          exit();
         }
         else{
           for($i=0; $i < $_REQUEST['insertions']; $i++){
@@ -100,11 +109,15 @@
           if ($nrows > 0){
             $_nrows = $_nrows + $nrows;
           }
+          else {
+            $connection->rollback();
+            exit();
+          }
           }
           if ($_nrows > 0){
             echo("<br><div class=\"container\">");
             echo("<div class=\"alert alert-success\">");
-            echo("<strong>Rows inserted: $_nrows</strong></div></div>");
+            echo("<strong>New dental charting procedure was created! (Rows inserted: $_nrows)</strong></div></div>");
           }
         }
       }
