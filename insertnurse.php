@@ -1,5 +1,10 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
+  <div class="container">
+  <br>
   <form action="insertconsultation2.php" method="post">
     <?php
 
@@ -8,6 +13,7 @@
       $date_timestamp = date("Y-m-d H:i:s", $date_timestamp_aux);
 
       echo("<h3>Insert a nurse for the consultation:</h3>");
+      echo("<br>");
 
 
     ?>
@@ -67,8 +73,8 @@
     </select>
     </p>
 
-
-  <p><input type="submit" value="Add"/></p>
-
+  <br><br>
+  <p><button class="btn btn-primary" type="submit"/>Add</button></p>
+  </div>
   </body>
 </html>

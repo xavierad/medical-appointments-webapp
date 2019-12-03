@@ -1,5 +1,10 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
   <body>
+  <div class="container">
+  <br>
 <?php
     $host = "db.tecnico.ulisboa.pt";
     $user = "ist187094";
@@ -34,18 +39,19 @@
         $stmt->execute();
 
         echo("<h3>Free appointments:</h3>");
-        echo("<table border=\"1\">");
-        echo("<tr><td>VAT_doctor</td><td>date_timestamp</td><td>_description</td><td>VAT_client</td></tr>");
+        echo("<br>");
+        echo("<table border=\"1\" cellspacing=\"5\">\n");
+        echo("<tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>Description</center></td><td><center>VAT client</center></td></tr>");
         foreach($stmt as $row)
         {
           echo("<tr>\n");
-          echo("<td>{$row['VAT_doctor']}</td>\n");
-          echo("<td>{$row['date_timestamp']}</td>\n");
-          echo("<td>{$row['_description']}</td>\n");
-          echo("<td>{$row['VAT_client']}</td>\n");
+          echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
+          echo("<td><center>{$row['date_timestamp']}</center></td>\n");
+          echo("<td><center>{$row['_description']}</center></td>\n");
+          echo("<td><center>{$row['VAT_client']}</center></td>\n");
           echo("<td><a href=\"newconsultation.php?appointment=");
           echo($row['VAT_client']. ",".$row['VAT_doctor']. "," .$row['date_timestamp']);
-          echo("\">Add Consultation info</a></td>\n");
+          echo("\"><center>Add Consultation info</center></a></td>\n");
           echo("</tr>\n");
         }
         echo("</table>\n\n");
