@@ -23,7 +23,7 @@ UPDATE employee,
     inner join permanent_doctor on permanent_doctor.VAT = employee.VAT
     inner join consultation on consultation.VAT_doctor = employee.VAT
     where permanent_doctor.years > number_years
-    and consultation.date_timestamp like '2019%'
+    and year(consultation.date_timestamp) = year(curdate())
     group by employee.VAT
   ) as consultation_info
   WHERE info_doctor.VAT_doctor = consultation_info.VAT_doctor
@@ -50,7 +50,7 @@ UPDATE employee,
     inner join permanent_doctor on permanent_doctor.VAT = employee.VAT
     inner join consultation on consultation.VAT_doctor = employee.VAT
     where permanent_doctor.years > number_years
-    and consultation.date_timestamp like '2019%'
+    and year(consultation.date_timestamp) = year(curdate())
     group by employee.VAT
   ) as consultation_info
   WHERE info_doctor.VAT_doctor = consultation_info.VAT_doctor
