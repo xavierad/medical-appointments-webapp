@@ -30,7 +30,7 @@
               echo ("<p><strong>Number:</strong> <input type=\"number\" class=\"form-control\" name=\"_number".$i."\" min=\"1\" max=\"8\" required><p>");
               echo ("</div>");
               echo ("<div class=\"form-group col-md-1.5\">");
-              echo ("<p>Measure: <input type=\"text\" class=\"form-control\" name=\"measure".$i."\" required><p>");
+              echo ("<p>Measure: <input type=\"number\" class=\"form-control\" step=\"0.01\" name=\"measure".$i."\" required><p>");
               echo ("</div>");
               echo ("<div class=\"form-group col-md-4\">");
               echo ("<p>Description: <input type=\"text\" class=\"form-control\" name=\"_desc".$i."\"><p>");
