@@ -37,24 +37,30 @@
       else {
         $stmt->bindParam(':VAT', $VAT);
         $stmt->execute();
-
+        $nrows = $stmt->rowCount();
         echo("<h3>Free appointments:</h3>");
-        echo("<br>");
-        echo("<table border=\"1\" cellspacing=\"5\">\n");
-        echo("<tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>Description</center></td><td><center>VAT client</center></td></tr>");
-        foreach($stmt as $row)
-        {
-          echo("<tr>\n");
-          echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
-          echo("<td><center>{$row['date_timestamp']}</center></td>\n");
-          echo("<td><center>{$row['_description']}</center></td>\n");
-          echo("<td><center>{$row['VAT_client']}</center></td>\n");
-          echo("<td><a href=\"newconsultation.php?appointment=");
-          echo($row['VAT_client']. ",".$row['VAT_doctor']. "," .$row['date_timestamp']);
-          echo("\"><center>Add Consultation info</center></a></td>\n");
-          echo("</tr>\n");
+        if($nrows==0){
+          echo("<p><strong>There is no appointments for this client</strong></p>");
         }
-        echo("</table>\n\n");
+        else {
+          echo("<h3>Free appointments:</h3>");
+          echo("<br>");
+          echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
+          echo("<tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>Description</center></td><td><center>VAT client</center></td></tr>");
+          foreach($stmt as $row)
+          {
+            echo("<tr>\n");
+            echo("<td><center>{$row['VAT_doctor']}</center></td>\n");
+            echo("<td><center>{$row['date_timestamp']}</center></td>\n");
+            echo("<td><center>{$row['_description']}</center></td>\n");
+            echo("<td><center>{$row['VAT_client']}</center></td>\n");
+            echo("<td><a href=\"newconsultation.php?appointment=");
+            echo($row['VAT_client']. ",".$row['VAT_doctor']. "," .$row['date_timestamp']);
+            echo("\"><center>Add Consultation info</center></a></td>\n");
+            echo("</tr>\n");
+          }
+          echo("</table>\n\n");
+        }
       }
     }
 
