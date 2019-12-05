@@ -57,7 +57,7 @@ UPDATE employee,
 ) as update_info
 SET employee.salary = 1.05 * employee.salary
 WHERE employee.VAT = update_info.doctor_VAT
-AND update_info.consult_count < 100;
+AND update_info.consult_count <= 100;
 
 END $$
 DELIMITER ;
