@@ -35,7 +35,7 @@
           echo("<p><strong>There is no appointments for this client</strong></p>");
         }
         else{
-          echo("<table border=\"1\" cellspacing=\"5\">\n");
+          echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
           echo("<tr><td><center>VAT doctor</center</td><td><center>Date</center</td><td><center>Description</center</td><td><center>VAT client</center</td></tr>");
           foreach($stmt as $row)
           {

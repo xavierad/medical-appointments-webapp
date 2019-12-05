@@ -7,8 +7,6 @@
   <br>
   <h3>Consultation Info:</h3>
   <br>
-  <table border=\"1\" cellspacing=\"5\">
-  <tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>SOAP S</center></td><td><center>SOAP O</center></td><td><center>SOAP A</center></td><td><center>SOAP P</center></td><td><center>Diagnostic ID</center></td><td><center>Diagnostic Description</center></td><td><center>Prescription Name</center></td><td><center>Prescription Lab</center></td><td><center>Prescription Dosage</center></td><td><center>Prescription Description</center></td></tr>
 
 <?php
 
@@ -49,6 +47,9 @@
         $stmt->bindParam(':VAT_doctor', $VAT_doctor);
         $stmt->bindParam(':date_timestamp', $date_timestamp);
         $stmt->execute();
+
+        echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">");
+        echo("<tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>SOAP S</center></td><td><center>SOAP O</center></td><td><center>SOAP A</center></td><td><center>SOAP P</center></td><td><center>Diagnostic ID</center></td><td><center>Diagnostic Description</center></td><td><center>Prescription Name</center></td><td><center>Prescription Lab</center></td><td><center>Prescription Dosage</center></td><td><center>Prescription Description</center></td></tr>");
 
         foreach($stmt as $row)
         {
