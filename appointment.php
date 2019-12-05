@@ -21,10 +21,14 @@
       }
       if ($tok !== false) {
         $tok = strtok(",");
+        $VAT_doctor = $tok;
+      }
+      if ($tok !== false) {
+        $tok = strtok(",");
         $date_timestamp = $tok;
       }
 
-      $sql = "SELECT * FROM appointment WHERE VAT_client = :VAT_client AND date_timestamp = :date_timestamp";
+      $sql = "SELECT * FROM appointment WHERE VAT_client = :VAT_client AND VAT_doctor = :VAT_doctor AND date_timestamp = :date_timestamp";
       $stmt = $connection->prepare($sql);
       if ($stmt == FALSE)
       {
@@ -34,6 +38,7 @@
       }
       else {
         $stmt->bindParam(':VAT_client', $VAT_client);
+        $stmt->bindParam(':VAT_doctor', $VAT_doctor);
         $stmt->bindParam(':date_timestamp', $date_timestamp);
         $stmt->execute();
 

@@ -60,6 +60,12 @@
           echo("<td><center>{$row['SOAP_O']}</center></td>\n");
           echo("<td><center>{$row['SOAP_A']}</center></td>\n");
           echo("<td><center>{$row['SOAP_P']}</center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
           echo("</tr>\n");
         }
       }
@@ -117,6 +123,10 @@
           echo("<td><center>{$row['SOAP_P']}</center></td>\n");
           echo("<td><center>{$row['ID']}</center></td>\n");
           echo("<td><center>{$row[7]}</center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
+          echo("<td><center></center></td>\n");
           echo("</tr>\n");
         }
       }

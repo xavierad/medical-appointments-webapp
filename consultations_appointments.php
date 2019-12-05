@@ -45,7 +45,7 @@
             echo("<td><center>{$row['_description']}</center</td>\n");
             echo("<td><center>{$row['VAT_client']}</center</td>\n");
             echo("<td><a href=\"appointment.php?appointment=");
-            echo($row['VAT_client']. "," .$row['date_timestamp']);
+            echo($row['VAT_client']. ",".$row['VAT_doctor']. "," .$row['date_timestamp']);
             echo("\"><center>Appointment Info</center</a></td>\n");
             echo("</tr>\n");
           }
