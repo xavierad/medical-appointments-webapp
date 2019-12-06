@@ -43,7 +43,6 @@
           echo("<p><strong>There is no appointments for this client</strong></p>");
         }
         else {
-          echo("<h3>Free appointments:</h3>");
           echo("<br>");
           echo("<table cellpadding=\"5\" border=\"1\" cellspacing=\"2\">\n");
           echo("<tr><td><center>VAT doctor</center></td><td><center>Date</center></td><td><center>Description</center></td><td><center>VAT client</center></td></tr>");
