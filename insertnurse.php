@@ -51,24 +51,13 @@
         $stmt->bindParam(':date_timestamp', $date_timestamp);
 
         $stmt->execute();
-        //nrows = $stmt->rowCount();
 
-        /*if($nrows==0){
-          foreach($stmt as $row)
-          {
-            $VAT_nurse = $row['VAT'];
-            echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
-          }
-          echo("<p><strong>There are no more free nurses left!</strong></p>");
-        }*/
-        //else {
+        foreach($stmt as $row)
+        {
+          $VAT_nurse = $row['VAT'];
+          echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
+        }
 
-          foreach($stmt as $row)
-          {
-            $VAT_nurse = $row['VAT'];
-            echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
-          }
-        //}
       }
     }
 

@@ -82,7 +82,7 @@
         exit();
       }
 
-      echo("<br>");
+      echo("<br><div class=\"container\">");
       echo("<h3>Insert more information on the consultation:</h3>");
       echo("<br>");
       echo("<td><a href=\"insertnurse.php?VAT_doctor=".$VAT_doctor."&date_timestamp=".$date_timestamp);
