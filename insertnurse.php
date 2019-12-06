@@ -23,8 +23,6 @@
     <p><input type="hidden" name="date_timestamp"
     value="<?=$date_timestamp?>"/></p>
 
-    <p>Nurse (VAT):
-      <select name="VAT_nurse">
   <?php
     $host = "db.ist.utl.pt";
     $user = "ist187094";
@@ -51,13 +49,23 @@
         $stmt->bindParam(':date_timestamp', $date_timestamp);
 
         $stmt->execute();
-
-        foreach($stmt as $row)
-        {
-          $VAT_nurse = $row['VAT'];
-          echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
+        $nrows = $stmt->rowCount();
+        if($nrows==0){
+          echo("<br><div class=\"container\">");
+          echo("<div class=\"alert alert-warning\">");
+          echo("<strong>There is no more nurses available!</strong></div></div>");
         }
-
+        else{
+          echo("<p>Nurse (VAT):");
+          echo("<select name=\"VAT_nurse\">");
+          foreach($stmt as $row)
+          {
+            $VAT_nurse = $row['VAT'];
+            echo("<option value=\"$VAT_nurse\">$VAT_nurse</option>");
+          }
+          echo("</select>");
+          echo("</p><br><br><p><button class=\"btn btn-primary\" type=\"submit\"/>Add</button></p>");
+        }
       }
     }
 
@@ -71,11 +79,8 @@
 
     $connection = null;
   ?>
-    </select>
-    </p>
 
-  <br><br>
-  <p><button class="btn btn-primary" type="submit"/>Add</button></p>
+
   </div>
   </body>
 </html>
